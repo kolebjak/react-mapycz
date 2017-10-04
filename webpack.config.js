@@ -1,18 +1,15 @@
 const path = require('path');
-const webpack = require('webpack');
 
 module.exports = {
-	entry: './src/index.js',
-
-	externals: [
-		'react',
-		'react-dom',
-		'prop-types',
-	],
+	entry: {
+		index: './src/index.js',
+		playground: './playground/index.js',
+	},
 
 	output: {
-		path: path.resolve(__dirname, 'dist'),
-		filename: 'index.js',
+		path: path.resolve(__dirname, './playground/__build__'),
+		publicPath: '/__build__/',
+		filename: '[name].js',
 		library: 'react-mapycz',
 		libraryTarget: 'umd',
 	},
@@ -27,14 +24,8 @@ module.exports = {
 	},
 
 	resolve: {
-		extensions: ['.js'],
-	},
-
-	plugins: [
-		new webpack.optimize.UglifyJsPlugin(),
-	],
-
-	devServer: {
-		hot: true,
+		alias: {
+			'react-mapycz': path.resolve(__dirname, './src'),
+		},
 	},
 };
