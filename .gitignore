@@ -17,4 +17,4 @@ jspm_packages/
 .env
 
 node_modules/
-
+playground/__build__
