@@ -1,0 +1,48 @@
+{
+  "name": "react-mapycz",
+  "version": "0.1.0",
+  "description": "A React component used for embedding Mapy.cz map, adjusting its controls, adding markers etc.",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "webpack-dev-server --progress",
+    "build": "webpack --progress",
+    "lint": "eslint src/**",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kajda90/react-mapycz.git"
+  },
+  "keywords": [
+    "react",
+    "maps",
+    "mapycz"
+  ],
+  "author": "Michal Kacerovský <kacerovsky.michal@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kajda90/react-mapycz/issues"
+  },
+  "homepage": "https://github.com/kajda90/react-mapycz#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "eslint": "^4.8.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.2.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.4.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  }
+}

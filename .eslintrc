@@ -1,0 +1,54 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "eslint:recommended"
+    ],
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true,
+            "modules": true
+        }
+    },
+    "plugins": [
+        "react",
+        "import"
+    ],
+    "rules": {
+        "comma-dangle": [
+            "error",
+            "always-multiline"
+        ],
+        "indent": [
+            "error",
+            "tab"
+        ],
+        "linebreak-style": [
+            "error",
+            "windows"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "object-curly-spacing": [
+            "error",
+            "never"
+        ],
+        "no-console": "warn",
+        "no-debugger": "warn",
+        "no-unused-vars": "error",
+        "no-undef": "off"
+    }
+}
