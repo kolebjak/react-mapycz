@@ -4,8 +4,8 @@
   "description": "A React component used for embedding Mapy.cz map, adjusting its controls, adding markers etc.",
   "main": "dist/index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress",
-    "build": "webpack --progress",
+    "start": "webpack-dev-server --config webpack.config.js --progress",
+    "build": "webpack --config webpack.prod.config.js --progress",
     "lint": "eslint src/**",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
