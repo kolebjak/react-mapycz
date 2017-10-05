@@ -1,5 +1,5 @@
 
-const API_SCRIPT_ID = '_apiMapyCzScript';
+const API_SCRIPT_ID = '_MapyApiLoader';
 
 const scriptLoaded = (resolve) => () => {
 	Loader.async = true;
@@ -8,7 +8,7 @@ const scriptLoaded = (resolve) => () => {
 	});
 };
 
-const SMapLoader = new Promise((resolve, reject) => {
+const MapyApiLoader = new Promise((resolve, reject) => {
 	if (typeof(document) === 'undefined') {
 		reject();
 	}
@@ -23,4 +23,4 @@ const SMapLoader = new Promise((resolve, reject) => {
 	resolve(window.SMap);
 });
 
-export default SMapLoader;
+export default MapyApiLoader;

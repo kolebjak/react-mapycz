@@ -5,15 +5,21 @@ class AbstractControl extends React.Component {
 
 	constructor() {
 		super();
-		this.state = {control: null};
+		this.control = null;
+		this.state = {
+			scontrolCreated: false,
+		};
 	}
 
 	componentWillReceiveProps(nextProps) {
 		const {smap} = nextProps;
-		if (!this.state.smap && smap) {
+		if (!this.state.scontrolCreated && smap) {
 			let control = this.createControl(smap, nextProps);
-			this.setState({control});
 			smap.addControl(control, nextProps);
+			this.control = control;
+			this.setState({
+				scontrolCreated: true,
+			});
 		}
 	}
 

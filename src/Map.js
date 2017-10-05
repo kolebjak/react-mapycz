@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MapPropTypes from './MapPropTypes';
-import SmapLoader from './SmapLoader';
+import MapyApiLoader from './MapyApiLoader';
+
 const MAP_ID_PREFIX = '_map-component-';
 
 class Map extends React.Component {
@@ -9,11 +10,19 @@ class Map extends React.Component {
 	constructor(props, context) {
 		super(props, context);
 		this.mapId = MAP_ID_PREFIX + Map.COUNTER++;
-		this.state = {smap: null};
+		this.smap = null;
+		this.mapLayers = {};
+		const {zoom, centerCoords, layer} = props;
+		this.state = {
+			zoom,
+			centerCoords,
+			layer,
+			smapCreated: false,
+		};
 	}
 
 	componentDidMount() {
-		SmapLoader.then(this.initiateMap.bind(this));
+		MapyApiLoader.then(this.initiateMap.bind(this));
 	}
 
 	initiateMap(SMap) {
@@ -22,17 +31,37 @@ class Map extends React.Component {
 			center = SMap.Coords.fromWGS84(lng, lat);
 
 		const smap = new SMap(document.getElementById(this.mapId), center, zoom);
-		smap.addDefaultLayer(SMap[Map.LayerIds[this.props.layer]]).enable();
 		smap.getSignals().addListener(window, '*', this.handleSignals.bind(this));
-		this.setState({smap});
+
+		this.smap = smap;
+		this.setState({smapCreated: true});
 	}
 
-	componentDidUpdate() {
+	componentWillReceiveProps(nextProps) {
+		const {zoom, centerCoords, layer} = nextProps;
+		this.setState({
+			zoom,
+			centerCoords,
+			layer,
+		});
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		const {zoom, layer, smapCreated} = this.state;
+		if (smapCreated) {
+			this.smap.setZoom(zoom);
+
+			if(!this.mapLayers[layer]) {
+				this.mapLayers[layer] = this.smap.addDefaultLayer(SMap[Map.LayerIds[layer]]);
+			}
+			this.mapLayers[prevState.layer].disable();
+			this.mapLayers[layer].enable();
+		}
+	}
+	
 	handleSignals(eventObj) {
 		if (eventObj.type === 'zoom-start') {
-			this.props.onZoomStart(eventObj);
+			this.props.onZoomStart && this.props.onZoomStart(eventObj);
 		}
 	}
 
@@ -40,7 +69,8 @@ class Map extends React.Component {
 		const {width, height, children} = this.props;
 		return (
 			<div style={{width, height}} id={this.mapId}>
-				{React.Children.map(children, (child, idx) => React.cloneElement(child, {smap: this.state.smap, key: child.type.name + idx}))}
+				{!this.state.smapCreated && <div style={{fontSize: '200%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Načítání mapy...</div>}
+				{React.Children.map(children, (child, idx) => React.cloneElement(child, {smap: this.smap, key: child.type.name + idx}))}
 			</div>
 		);
 	}
