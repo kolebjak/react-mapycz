@@ -1,21 +1,17 @@
 import React from 'react';
-import Map, {ControlPane, ZoomControl, CompassControl} from 'react-mapycz';
+import Map, {ControlPane, ZoomControl} from 'react-mapycz';
 
-const App = () => (
-	<div>
+const App = () => {
+	return (<div>
 		<h1>Hi</h1>
-		<Map>
+		<Map
+			layer={Map.Layers.PHOTO}
+		>
 			<ControlPane>
 				<ZoomControl/>
 			</ControlPane>
 		</Map>
-		<Map>
-			<ControlPane>
-				<CompassControl left="50"/>
-			</ControlPane>
-		</Map>
-		<Map/>
-	</div>
-);
+	</div>);
+};
 
 export default App;

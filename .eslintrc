@@ -47,7 +47,7 @@
             "never"
         ],
         "no-console": "warn",
-        "no-debugger": "warn",
+        "no-debugger": "off",
         "no-unused-vars": "error",
         "no-undef": "off",
         "import/no-unresolved": [
