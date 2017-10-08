@@ -2,28 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class ControlPane extends React.Component {
+	
+	static contextTypes = {
+		sMap: PropTypes.object,
+	}
+
+	static propTypes = {
+		children: PropTypes.node,
+	}
 
 	render() {
-		if (this.props.children) {
-			return <div>
-				{
-					React.Children.map(this.props.children, (child) =>
-						React.cloneElement(child, {
-							smap: this.props.smap,
-							key: child.type.name,
-						})
-					)
-				}
-			</div>;
-		}
-		return null;
+		return <div>{this.props.children}</div>;
 	}
 
 }
-
-ControlPane.propTypes = {
-	children: PropTypes.node,
-	smap: PropTypes.object,
-};
 
 export default ControlPane;

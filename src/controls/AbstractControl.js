@@ -2,44 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class AbstractControl extends React.Component {
-
-	constructor() {
-		super();
-		this.control = null;
-		this.state = {
-			scontrolCreated: false,
-		};
+	
+	static contextTypes = {
+		sMap: PropTypes.object,
 	}
 
-	componentWillReceiveProps(nextProps) {
-		const {smap} = nextProps;
-		if (!this.state.scontrolCreated && smap) {
-			let control = this.createControl(smap, nextProps);
-			smap.addControl(control, nextProps);
-			this.control = control;
-			this.setState({
-				scontrolCreated: true,
-			});
-		}
+	state = {
+		sControl: null,
 	}
 
-	createControl(/* smap, props */) {
+	createControl(/* sMap, props */) {
 		throw new Error('Unimplemented method createControl');
 	}
 
-	componentWillUnmount() {
-		if (this.state.smap) {
-			smap.removeControl(this.state.control);
+	componentDidMount() {
+		if (!this.state.sControl) {
+			const sControl = this.createControl(this.context.sMap, this.props);
+			this.context.sMap.addControl(sControl, this.props);
+			this.setState({sControl});
 		}
+	}
+
+	componentWillUnmount() {
+		this.context.sMap.removeControl(this.state.sControl);
+		this.setState({sControl: null});
 	}
 
 	render() {
 		return null;
 	}
 }
-
-AbstractControl.propTypes = {
-	smap: PropTypes.object,
-};
 
 export default AbstractControl;

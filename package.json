@@ -28,7 +28,8 @@
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
-    "babel-plugin-transform-function-bind": "^6.22.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.0",
     "eslint": "^4.8.0",
@@ -43,6 +44,7 @@
     "webpack-dev-server": "^2.9.1"
   },
   "dependencies": {
+    "can-use-dom": "^0.1.0",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"

@@ -1,3 +1,4 @@
-export {default as ZoomControl} from './Zoom';
-export {default as CompassControl} from './Compass';
-export {default as SyncControl} from './Sync';
+export {default as ZoomControl} from './ZoomControl';
+export {default as CompassControl} from './CompassControl';
+export {default as SyncControl} from './SyncControl';
+export {default as MouseControl} from './MouseControl';

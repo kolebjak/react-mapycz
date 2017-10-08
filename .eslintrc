@@ -23,6 +23,17 @@
         "import"
     ],
     "rules": {
+        "react/default-props-match-prop-types": "error",
+        "react/forbid-component-props": "error",
+        "react/no-children-prop": "error",
+        "react/no-direct-mutation-state": "error",
+        "react/no-multi-comp": "warn",
+        "react/prefer-es6-class": [
+            "error",
+            "always"
+        ],
+
+        "strict": 0,
         "comma-dangle": [
             "error",
             "always-multiline"

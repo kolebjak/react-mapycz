@@ -2,7 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-	entry: './src/index.js',
+	entry: {
+		index: './src/index.js',
+		controls: './src/controls/index.js',
+	},
 
 	externals: [
 		'react',
@@ -12,7 +15,7 @@ module.exports = {
 
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'index.js',
+		filename: '[name].js',
 		library: 'react-mapycz',
 		libraryTarget: 'umd',
 	},
