@@ -11,7 +11,6 @@ class Marker extends React.Component {
 
 	static propTypes = {
 		coords: MapPropTypes.coords.isRequired,
-		content: PropTypes.element,
 		title: PropTypes.string,
 	}
 
