@@ -1,6 +1,6 @@
 import React from 'react';
 import Map, {MapyCzProvider, MarkerLayer, Marker} from 'react-mapycz';
-import {ZoomControl, SyncControl, MouseControl, CompassControl} from 'react-mapycz/controls';
+import {ZoomControl, SyncControl, MouseControl, CompassControl, KeyboardControl} from 'react-mapycz/controls';
 
 class App extends React.Component {
 	state = {
@@ -40,6 +40,7 @@ class App extends React.Component {
 				<ZoomControl/>
 				<SyncControl/>
 				<MouseControl/>
+				<KeyboardControl/>
 				<CompassControl/>
 				<MarkerLayer>
 					<Marker coords={[49.4404919, 12.9227611]} title="Zkouška"/>

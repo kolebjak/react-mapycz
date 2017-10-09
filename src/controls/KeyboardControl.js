@@ -23,10 +23,10 @@ class KeyboardControl extends MapControl {
 		const {allowPan, allowZoom} = this.props;
 		let mode = 0;
 		if (allowPan) {
-			mode |= SMap.MOUSE_PAN;
+			mode |= SMap.KB_PAN;
 		}
 		if (allowZoom) {
-			mode |= SMap.MOUSE_ZOOM;
+			mode |= SMap.KB_ZOOM;
 		}
 		return mode;
 	}

@@ -2,14 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MapPropTypes from './MapPropTypes';
 
-const MAP_ID_PREFIX = '_map-component-';
-
 class Map extends React.Component {
 
-	static childContextTypes = {
-		sMap: PropTypes.object,
-	}
-
+	
 	static LayerIds = {
 		TOURIST: 'DEF_TURIST',
 		PHOTO: 'DEF_OPHOTO',
@@ -18,7 +13,13 @@ class Map extends React.Component {
 	}
 
 	static Layers = Object.keys(Map.LayerIds)
-		.reduce((obj, key) => (obj[key] = key, obj), {});
+		.reduce((obj, key) => (obj[key] = key, obj), {})
+
+	static LAYERS_ENUM = Object.keys(Map.LayerIds)
+
+	static childContextTypes = {
+		sMap: PropTypes.object,
+	}
 
 	static propTypes = {
 		children: PropTypes.node,
@@ -29,9 +30,10 @@ class Map extends React.Component {
 		minZoom: MapPropTypes.zoom,
 		maxZoom: MapPropTypes.zoom,
 		centerCoords: MapPropTypes.coords,
-		layer: PropTypes.oneOf(Object.keys(Map.Layers)),
-	
-		onZoomStart: PropTypes.func,
+		layer: PropTypes.oneOfType([
+			PropTypes.arrayOf(PropTypes.oneOf(Map.LAYERS_ENUM)),
+			PropTypes.oneOf(Map.LAYERS_ENUM),
+		]),
 	}
 
 	static defaultProps = {
@@ -43,11 +45,10 @@ class Map extends React.Component {
 		maxZoom: 21,
 		centerCoords: [49.4404919, 12.9297611],
 		layer: Map.Layers.BASE,
-	};
+	}
 
 	constructor(props, context) {
 		super(props, context);
-		this.mapId = MAP_ID_PREFIX + Map.COUNTER++;
 		this.mapLayers = {};
 		const {zoom, centerCoords, layer} = props;
 		this.state = {
@@ -58,7 +59,7 @@ class Map extends React.Component {
 		};
 	}
 
-	onComponentMount = this.onComponentMount.bind(this);
+	onComponentMount = this.onComponentMount.bind(this)
 
 	onComponentMount(node) {
 		if (!this.state.sMap && node) {

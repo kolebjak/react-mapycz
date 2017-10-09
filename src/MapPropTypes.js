@@ -4,9 +4,7 @@ const errRequired = (propName, componentName) => new Error(`Missing required pro
 const errInvalid = (propName, componentName) => new Error(`Invalid prop \`${propName}\` supplied to \`${componentName}\`. Validation failed.`);
 
 const isNumber = (val) => !isNaN(val);
-
 const isInteger = (val) => isNumber(val) && val | 0 === val;
-
 const isInRange = (min, max) => (val) => isNumber(val) && val >= min && val <= max;
 
 /**
