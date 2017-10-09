@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import AbstractControl from './AbstractControl';
+import MapControl from './MapControl';
 
-class KeyboardControl extends AbstractControl {
+class KeyboardControl extends MapControl {
+	static displayName = 'KeyboardControl'
 
 	static propTypes = {
 		allowPan: PropTypes.bool,
@@ -15,17 +16,17 @@ class KeyboardControl extends AbstractControl {
 
 	createControl() {
 		const mode = this.resolveMode();
-		return new window.SMap.Control.Keyboard(mode);
+		return new SMap.Control.Keyboard(mode);
 	}
 
 	resolveMode() {
 		const {allowPan, allowZoom} = this.props;
 		let mode = 0;
 		if (allowPan) {
-			mode |= window.SMap.MOUSE_PAN;
+			mode |= SMap.MOUSE_PAN;
 		}
 		if (allowZoom) {
-			mode |= window.SMap.MOUSE_ZOOM;
+			mode |= SMap.MOUSE_ZOOM;
 		}
 		return mode;
 	}

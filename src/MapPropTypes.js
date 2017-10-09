@@ -30,7 +30,7 @@ const checkRequired = (anotherCheck) => (props, propName, componentName = 'ANONY
  */
 const zoom = (props, propName, componentName = 'ANONYMOUS') => {
 	const val = props[propName];
-	if (val !== undefined && !(isInteger(val) && isInRange(1, 18)(val))) {
+	if (val !== undefined && !(isInteger(val) && isInRange(1, 21)(val))) {
 		return errInvalid(propName, componentName);
 	}
 };

@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import AbstractControl from './AbstractControl';
+import MapControl from './MapControl';
 
-class MouseControl extends AbstractControl {
+class MouseControl extends MapControl {
+	static displayName = 'MouseControl'
 
 	static propTypes = {
 		allowPan: PropTypes.bool,
@@ -17,20 +18,20 @@ class MouseControl extends AbstractControl {
 
 	createControl() {
 		const mode = this.resolveMode();
-		return new window.SMap.Control.Mouse(mode);
+		return new SMap.Control.Mouse(mode);
 	}
 
 	resolveMode() {
 		const {allowPan, allowWheel, allowZoom} = this.props;
 		let mode = 0;
 		if (allowPan) {
-			mode |= window.SMap.MOUSE_PAN;
+			mode |= SMap.MOUSE_PAN;
 		}
 		if (allowWheel) {
-			mode |= window.SMap.MOUSE_WHEEL;
+			mode |= SMap.MOUSE_WHEEL;
 		}
 		if (allowZoom) {
-			mode |= window.SMap.MOUSE_ZOOM;
+			mode |= SMap.MOUSE_ZOOM;
 		}
 		return mode;
 	}

@@ -28,7 +28,7 @@ class MarkerLayer extends React.Component {
 	constructor(props, context) {
 		super(props, context);
 
-		const sLayer = new window.SMap.Layer.Marker();
+		const sLayer = new SMap.Layer.Marker();
 		this.context.sMap.addLayer(sLayer);
 
 		if (this.props.isEnabled) {

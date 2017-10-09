@@ -6,25 +6,36 @@ const SCRIPT_LOADING_NONE = 'NONE',
 	SCRIPT_LOADING_RUNNING = 'RUNNING',
 	SCRIPT_LOADING_DONE = 'DONE';
 
-const WithMapyCz = (Component) => {
+const MapyCzProvider = (Component) => {
 
 	class Container extends React.Component {
 
-		static displayName = 'WithMapyCz'
+		static displayName = 'MapyCzProvider'
 		
 		static propTypes = {
-			scriptUrl: PropTypes.string.isRequired,
+			scriptUrl: PropTypes.string,
+			loader: PropTypes.func,
 		}
 
-		state = {
-			scriptLoadingState: SCRIPT_LOADING_NONE,
+		static defaultProps = {
+			scriptUrl: 'https://api.mapy.cz/loader.js',
+			loader: () => <div>Načítání</div>,
 		}
 
-		onScriptLoaded = this.onScriptLoaded.bind(this);
+		constructor(props, context) {
+			super(props, context);
+			const isSMapDefined = typeof SMap !== 'undefined';
+
+			this.state = {
+				scriptLoadingState: isSMapDefined ? SCRIPT_LOADING_DONE : SCRIPT_LOADING_NONE,
+			};
+		}
+
+		onScriptLoaded = this.onScriptLoaded.bind(this)
 
 		onScriptLoaded() {
-			window.Loader.async = true;
-			window.Loader.load(null, null, () => {
+			Loader.async = true;
+			Loader.load(null, null, () => {
 				this.setState({
 					scriptLoadingState: SCRIPT_LOADING_DONE,
 				});
@@ -50,7 +61,7 @@ const WithMapyCz = (Component) => {
 				return;
 			}
 
-			if (typeof window.SMap === 'undefined') {
+			if (typeof SMap === 'undefined') {
 				this.loadScript();
 			}
 			else {
@@ -62,10 +73,12 @@ const WithMapyCz = (Component) => {
 		}
 
 		render() {
+			const Loader = this.props.loader;
+
 			if (this.state.scriptLoadingState === SCRIPT_LOADING_DONE) {
 				return <Component {...this.props}/>;
 			}
-			return null;
+			return <Loader />;
 		}
 
 	}
@@ -73,4 +86,4 @@ const WithMapyCz = (Component) => {
 	return Container;
 };
 
-export default WithMapyCz;
+export default MapyCzProvider;

@@ -1,6 +1,7 @@
-import AbstractControl from './AbstractControl';
+import MapControl from './MapControl';
 
-class SyncControl extends AbstractControl {
+class SyncControl extends MapControl {
+	static displayName = 'SyncControl'
 	
 	createControl(sMap) {
 		return new sMap.constructor.Control.Sync();

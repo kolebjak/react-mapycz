@@ -22,8 +22,8 @@ class Marker extends React.Component {
 	constructor(props, context) {
 		super(props, context);
 		const {title, coords: [lat, lng]} = props,
-			coords = window.SMap.Coords.fromWGS84(lng, lat);
-		const sMarker = new window.SMap.Marker(coords, false, {
+			coords = SMap.Coords.fromWGS84(lng, lat);
+		const sMarker = new SMap.Marker(coords, false, {
 			title,
 		});
 		this.context.sLayer.addMarker(sMarker);

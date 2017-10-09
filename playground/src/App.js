@@ -1,6 +1,6 @@
 import React from 'react';
-import Map, {WithMapyCz, ControlPane, MarkerLayer, Marker} from 'react-mapycz';
-import {ZoomControl, SyncControl, MouseControl} from 'react-mapycz/controls';
+import Map, {MapyCzProvider, MarkerLayer, Marker} from 'react-mapycz';
+import {ZoomControl, SyncControl, MouseControl, CompassControl} from 'react-mapycz/controls';
 
 class App extends React.Component {
 	state = {
@@ -37,11 +37,10 @@ class App extends React.Component {
 				zoom={this.state.zoom}
 				width={this.state.mapWidth}
 			>
-				<ControlPane>
-					{this.state.mapZoomControlOn && <ZoomControl/>}
-					<SyncControl/>
-					<MouseControl/>
-				</ControlPane>
+				<ZoomControl/>
+				<SyncControl/>
+				<MouseControl/>
+				<CompassControl/>
 				<MarkerLayer>
 					<Marker coords={[49.4404919, 12.9227611]} title="Zkouška"/>
 					<Marker coords={[49.4402919, 12.9217611]}/>
@@ -68,4 +67,4 @@ class App extends React.Component {
 	}
 }
 
-export default WithMapyCz(App);
+export default MapyCzProvider(App);

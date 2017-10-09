@@ -39,8 +39,8 @@ class Map extends React.Component {
 		height: '300px',
 	
 		zoom: 13,
-		minZoom: 2,
-		maxZoom: 18,
+		minZoom: 1,
+		maxZoom: 21,
 		centerCoords: [49.4404919, 12.9297611],
 		layer: Map.Layers.BASE,
 	};
@@ -75,9 +75,9 @@ class Map extends React.Component {
 	initiateMap(node) {
 		const {zoom, centerCoords, layer} = this.props,
 			[lat, lng] = centerCoords,
-			center = window.SMap.Coords.fromWGS84(lng, lat);
+			center = SMap.Coords.fromWGS84(lng, lat);
 
-		const sMap = new window.SMap(node, center, zoom);
+		const sMap = new SMap(node, center, zoom);
 		this.mapLayers[layer] = sMap.addDefaultLayer(SMap[Map.LayerIds[layer]]);
 		this.mapLayers[layer].enable();
 

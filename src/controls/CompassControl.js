@@ -1,9 +1,11 @@
-import AbstractControl from './AbstractControl';
+import MapControl from './MapControl';
 import PropTypes from 'prop-types';
 
-class CompassControl extends AbstractControl {
+class CompassControl extends MapControl {
+	static displayName = 'CompassControl'
 
 	static propTypes = {
+		title: PropTypes.string,
 		left: PropTypes.number,
 		top: PropTypes.number,
 		bottom: PropTypes.number,
@@ -11,12 +13,16 @@ class CompassControl extends AbstractControl {
 	}
 
 	static defaultProps = {
+		title: 'Posun mapy',
 		left: 10,
 		top: 10,
 	}
 
-	createControl(sMap) {
-		return new sMap.constructor.Control.CompassControl({});
+	createControl() {
+		const {title} = this.props;
+		return new SMap.Control.Compass({
+			title,
+		});
 	}
 
 }
