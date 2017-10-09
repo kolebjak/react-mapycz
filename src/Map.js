@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MapPropTypes from './MapPropTypes';
+import {componentDidUpdate} from './util';
 
 class Map extends React.Component {
 
@@ -47,6 +48,27 @@ class Map extends React.Component {
 		layer: Map.Layers.BASE,
 	}
 
+	static updateMap = {
+		zoom(sMap, zoom) {
+			sMap.setZoom(zoom);
+		},
+
+		layer(sMap, layer, prevLayer) {
+			let sLayer = sMap.getLayer(SMap[Map.LayerIds[layer]]);
+			const prevSLayer = sMap.getLayer(SMap[Map.LayerIds[prevLayer]]);
+			if (sLayer === null) {
+				sLayer = sMap.addDefaultLayer(SMap[Map.LayerIds[layer]]);
+			}
+			prevSLayer.disable();
+			sLayer.enable();
+		},
+
+		centerCoords(sMap, coords) {
+			const [lat, lng] = coords;
+			sMap.setCenter(SMap.Coords.fromWGS84(lng, lat));
+		},
+	}
+
 	constructor(props, context) {
 		super(props, context);
 		this.mapLayers = {};
@@ -85,27 +107,8 @@ class Map extends React.Component {
 		this.setState({sMap});
 	}
 
-	componentWillReceiveProps(nextProps) {
-		const {zoom, centerCoords, layer} = nextProps;
-		this.setState({
-			zoom,
-			centerCoords,
-			layer,
-		});
-	}
-
-	componentDidUpdate(prevProps, prevState) {
-		const {zoom, layer, sMap} = this.state;
-		if (sMap) { 
-			sMap.setZoom(zoom);
-			if (layer != prevState.layer) {
-				if(!this.mapLayers[layer]) {
-					this.mapLayers[layer] = sMap.addDefaultLayer(SMap[Map.LayerIds[layer]]);
-				}
-				this.mapLayers[prevState.layer].disable();
-				this.mapLayers[layer].enable();
-			}
-		}
+	componentDidUpdate(prevProps) {
+		componentDidUpdate(this, this.state.sMap, Map.updateMap, prevProps);
 	}
 
 	render() {
