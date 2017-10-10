@@ -11,6 +11,7 @@ class App extends React.Component {
 		coordLng: 12.9297611,
 		mapLayers: [BaseLayers.SMART_BASE],
 		showPois: true,
+		maxZoom: 21,
 	}
 
 	onZoomSelectChange = this.onZoomSelectChange.bind(this);
@@ -20,6 +21,7 @@ class App extends React.Component {
 	onCoordLatChange = this.onCoordLatChange.bind(this);
 	onCoordLngChange = this.onCoordLngChange.bind(this);
 	onShowPoisChange = this.onShowPoisChange.bind(this);
+	onMaxZoomChange = this.onMaxZoomChange.bind(this);
 
 	onZoomSelectChange(event) {
 		this.setState({zoom: parseInt(event.target.value)});
@@ -50,12 +52,17 @@ class App extends React.Component {
 	onShowPoisChange(event) {
 		this.setState({showPois: event.target.checked});
 	}
+
+	onMaxZoomChange(event) {
+		this.setState({maxZoom: event.target.value});
+	}
 		
 	render() {
 		return <div>
 			<Map
 				baseLayers={this.state.mapLayers}
 				zoom={this.state.zoom}
+				maxZoom={this.state.maxZoom}
 				width={this.state.mapWidth}
 				centerCoords={[this.state.coordLat, this.state.coordLng]}
 			>
@@ -78,6 +85,7 @@ class App extends React.Component {
 			<input value={this.state.mapWidth} onChange={this.onWidthChange} />
 			<input value={this.state.coordLat} onChange={this.onCoordLatChange} />
 			<input value={this.state.coordLng} onChange={this.onCoordLngChange} />
+			<input value={this.state.maxZoom} onChange={this.onMaxZoomChange} />
 			<label htmlFor="zoom-on"><input type="checkbox" checked={this.state.mapZoomControlOn} onChange={this.onZoomControlToggle} id="zoom-on"/> Zoom Control</label>
 			<label htmlFor="show-pois"><input type="checkbox" checked={this.state.showPois} onChange={this.onShowPoisChange} id="show-pois"/> ShowPOIs</label>
 			<div>

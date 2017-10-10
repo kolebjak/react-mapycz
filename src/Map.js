@@ -38,7 +38,7 @@ class Map extends React.Component {
 			sMap.setZoom(zoom);
 		},
 
-		baseLayers(sMap, layer, prevLayers) {
+		baseLayers(sMap, layer, prevLayers, {minZoom, maxZoom}) {
 			prevLayers && prevLayers.forEach((prevLayerId) => sMap.getLayer(prevLayerId).disable());
 
 			layer.forEach((nextLayerId) => {
@@ -48,11 +48,21 @@ class Map extends React.Component {
 				}
 				nextLayer.enable();
 			});
+
+			sMap.setZoomRange(minZoom, maxZoom);
 		},
 
 		centerCoords(sMap, coords) {
 			const [lat, lng] = coords;
 			sMap.setCenter(SMap.Coords.fromWGS84(lng, lat));
+		},
+
+		minZoom(sMap, level, prevLevel, {maxZoom}) {
+			sMap.setZoomRange(level, maxZoom);
+		},
+
+		maxZoom(sMap, level, prevLevel, {minZoom}) {
+			sMap.setZoomRange(minZoom, level);
 		},
 	}
 
