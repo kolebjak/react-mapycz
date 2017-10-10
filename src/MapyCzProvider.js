@@ -14,6 +14,7 @@ const MapyCzProvider = (Component) => {
 		
 		static propTypes = {
 			scriptUrl: PropTypes.string,
+			poi: PropTypes.bool,
 			loader: PropTypes.func,
 		}
 
@@ -35,7 +36,7 @@ const MapyCzProvider = (Component) => {
 
 		onScriptLoaded() {
 			Loader.async = true;
-			Loader.load(null, null, () => {
+			Loader.load(null, {poi: this.props.poi}, () => {
 				this.setState({
 					scriptLoadingState: SCRIPT_LOADING_DONE,
 				});

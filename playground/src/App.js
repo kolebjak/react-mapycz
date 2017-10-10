@@ -1,5 +1,5 @@
 import React from 'react';
-import Map, {MapyCzProvider, MarkerLayer, Marker} from 'react-mapycz';
+import Map, {MapyCzProvider, MarkerLayer, Marker, PoiLayer, BaseLayers} from 'react-mapycz';
 import {ZoomControl, SyncControl, MouseControl, CompassControl, KeyboardControl} from 'react-mapycz/controls';
 
 class App extends React.Component {
@@ -9,14 +9,17 @@ class App extends React.Component {
 		mapZoomControlOn: true,
 		coordLat: 49.4404919,
 		coordLng: 12.9297611,
+		mapLayers: [BaseLayers.SMART_BASE],
+		showPois: true,
 	}
 
 	onZoomSelectChange = this.onZoomSelectChange.bind(this);
 	onWidthChange = this.onWidthChange.bind(this);
-	onMapLayerChange = this.onMapLayerChange.bind(this);
+	onMapLayersChange = this.onMapLayersChange.bind(this);
 	onZoomControlToggle = this.onZoomControlToggle.bind(this);
 	onCoordLatChange = this.onCoordLatChange.bind(this);
 	onCoordLngChange = this.onCoordLngChange.bind(this);
+	onShowPoisChange = this.onShowPoisChange.bind(this);
 
 	onZoomSelectChange(event) {
 		this.setState({zoom: parseInt(event.target.value)});
@@ -26,8 +29,9 @@ class App extends React.Component {
 		this.setState({mapWidth: event.target.value});
 	}
 
-	onMapLayerChange(event) {
-		this.setState({mapLayer: event.target.value});
+	onMapLayersChange(event) {
+		const values = [...event.target.options].filter((option) => option.selected).map((option) => Number(option.value));
+		this.setState({mapLayers: values});
 	}
 
 	onZoomControlToggle(event) {
@@ -42,20 +46,26 @@ class App extends React.Component {
 	onCoordLngChange(event) {
 		this.setState({coordLng: event.target.value});
 	}
+
+	onShowPoisChange(event) {
+		this.setState({showPois: event.target.checked});
+	}
 		
 	render() {
 		return <div>
 			<Map
-				layer={this.state.mapLayer}
+				baseLayers={this.state.mapLayers}
 				zoom={this.state.zoom}
 				width={this.state.mapWidth}
 				centerCoords={[this.state.coordLat, this.state.coordLng]}
 			>
-				<ZoomControl/>
+				<ZoomControl labels={ZoomControl.DEFAULT_LABELS}/>
 				<SyncControl/>
 				<MouseControl/>
 				<KeyboardControl/>
 				<CompassControl/>
+				
+				<PoiLayer enabled={this.state.showPois} />
 				<MarkerLayer>
 					<Marker anchor={[0,0]} width={16} imageUrl="https://cdn2.iconfinder.com/data/icons/social-media-8/512/pointer.png" coords={[49.4404919, 12.9227611]} title="Zkouška"/>
 					<Marker coords={[49.4402919, 12.9217611]}/>
@@ -69,9 +79,16 @@ class App extends React.Component {
 			<input value={this.state.coordLat} onChange={this.onCoordLatChange} />
 			<input value={this.state.coordLng} onChange={this.onCoordLngChange} />
 			<label htmlFor="zoom-on"><input type="checkbox" checked={this.state.mapZoomControlOn} onChange={this.onZoomControlToggle} id="zoom-on"/> Zoom Control</label>
-			<select value={this.state.mapLayer} defaultValue={Map.Layers.BASE} onChange={this.onMapLayerChange}>
-				{Object.keys(Map.Layers).map((layer) => <option key={layer} value={layer}>{layer}</option>)}
-			</select>
+			<label htmlFor="show-pois"><input type="checkbox" checked={this.state.showPois} onChange={this.onShowPoisChange} id="show-pois"/> ShowPOIs</label>
+			<div>
+				<select style={{width: '200px', height: '200px'}} value={this.state.mapLayers} onChange={this.onMapLayersChange} multiple={true}>
+					{
+						Object.keys(BaseLayers).map((layerKey) => 
+							<option value={BaseLayers[layerKey]} key={layerKey}>{layerKey}</option>
+						)
+					}
+				</select>
+			</div>
 
 			{/* <Map>
 				<ControlPane>

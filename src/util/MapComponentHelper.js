@@ -3,7 +3,7 @@ const applyUpdater = (props, sInstance, updaterMap, prevProps) => {
 		const nextValue = props[prop],
 			prevValue = prevProps[prop];
 		if (prevValue !== nextValue) {
-			updaterMap[prop](sInstance, nextValue, prevValue);
+			updaterMap[prop](sInstance, nextValue, prevValue, props);
 		}
 	});
 };

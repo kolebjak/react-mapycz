@@ -20,7 +20,7 @@ const checkRequired = (anotherCheck) => (props, propName, componentName = 'ANONY
 };
 
 /**
- * An integer between 1 and 18 (included).
+ * An integer between 1 and 21 (included).
  * @param {Object} props 
  * @param {string} propName 
  * @param {?string} componentName 

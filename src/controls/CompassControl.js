@@ -1,8 +1,14 @@
-import MapControl from './MapControl';
+import React from 'react';
 import PropTypes from 'prop-types';
+import {componentConstruct, componentDidUpdate} from '../util/MapComponentHelper';
+import {positionUpdater, domAttrUpdater} from '../util/Updaters';
 
-class CompassControl extends MapControl {
+class CompassControl extends React.Component {
 	static displayName = 'CompassControl'
+	
+	static contextTypes = {
+		sMap: PropTypes.object,
+	}
 
 	static propTypes = {
 		title: PropTypes.string,
@@ -18,11 +24,33 @@ class CompassControl extends MapControl {
 		top: 10,
 	}
 
-	createControl() {
-		const {title} = this.props;
-		return new SMap.Control.Compass({
-			title,
-		});
+	static updaterMap = {
+		title: domAttrUpdater('title'),
+		left: positionUpdater('left'),
+		right: positionUpdater('right'),
+		top: positionUpdater('top'),
+		bottom: positionUpdater('bottom'),
+	}
+
+	constructor(props, context) {
+		super(props, context);
+
+		const sControl = new SMap.Control.Compass();
+		context.sMap.addControl(sControl);
+		this.sControl = sControl;
+		componentConstruct(props, sControl, CompassControl.updaterMap);
+	}
+	
+	componentDidUpdate(props) {
+		componentDidUpdate(this, this.sControl, CompassControl.updaterMap, props);
+	}
+
+	componentWillUnmount() {
+		this.context.sMap.removeControl(this.sControl);
+	}
+
+	render() {
+		return null;	
 	}
 
 }

@@ -1,23 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MapPropTypes from './MapPropTypes';
-import {componentDidUpdate, componentConstruct} from './MapComponentHelper';
+import BaseLayers from './BaseLayers'; 
+import {componentDidUpdate, componentConstruct} from './util/MapComponentHelper';
 
 class Map extends React.Component {
-
-	// region statics
-
-	static LayerIds = {
-		TOURIST: 'DEF_TURIST',
-		PHOTO: 'DEF_OPHOTO',
-		BASE: 'DEF_BASE',
-		HYBRID: 'DEF_HYBRID',
-	}
-
-	static Layers = Object.keys(Map.LayerIds)
-		.reduce((obj, key) => (obj[key] = key, obj), {})
-
-	static LAYERS_ENUM = Object.keys(Map.LayerIds)
 
 	static childContextTypes = {
 		sMap: PropTypes.object,
@@ -32,13 +19,10 @@ class Map extends React.Component {
 		minZoom: MapPropTypes.zoom,
 		maxZoom: MapPropTypes.zoom,
 		centerCoords: MapPropTypes.coords,
-		layer: PropTypes.oneOfType([
-			PropTypes.arrayOf(PropTypes.oneOf(Map.LAYERS_ENUM)),
-			PropTypes.oneOf(Map.LAYERS_ENUM),
-		]),
+		baseLayers: PropTypes.arrayOf(PropTypes.number),
 	}
 
-	static defaultProps = {
+	static defaultProps  = {
 		width: '100%',
 		height: '300px',
 	
@@ -46,7 +30,7 @@ class Map extends React.Component {
 		minZoom: 1,
 		maxZoom: 21,
 		centerCoords: [49.4404919, 12.9297611],
-		layer: Map.Layers.BASE,
+		baseLayers: [BaseLayers.SMART_BASE],
 	}
 
 	static updateMap = {
@@ -54,14 +38,16 @@ class Map extends React.Component {
 			sMap.setZoom(zoom);
 		},
 
-		layer(sMap, layer, prevLayer) {
-			let sLayer = sMap.getLayer(SMap[Map.LayerIds[layer]]);
-			const prevSLayer = sMap.getLayer(SMap[Map.LayerIds[prevLayer]]);
-			if (sLayer === null) {
-				sLayer = sMap.addDefaultLayer(SMap[Map.LayerIds[layer]]);
-			}
-			prevSLayer && prevSLayer.disable();
-			sLayer.enable();
+		baseLayers(sMap, layer, prevLayers) {
+			prevLayers && prevLayers.forEach((prevLayerId) => sMap.getLayer(prevLayerId).disable());
+
+			layer.forEach((nextLayerId) => {
+				let nextLayer = sMap.getLayer(nextLayerId);
+				if (nextLayer === null) {
+					nextLayer = sMap.addDefaultLayer(nextLayerId);
+				}
+				nextLayer.enable();
+			});
 		},
 
 		centerCoords(sMap, coords) {
@@ -69,8 +55,6 @@ class Map extends React.Component {
 			sMap.setCenter(SMap.Coords.fromWGS84(lng, lat));
 		},
 	}
-
-	// endregion
 
 	state = {
 		sMap: null,

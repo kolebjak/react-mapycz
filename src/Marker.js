@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MapPropTypes from './MapPropTypes';
-import {componentConstruct, componentDidUpdate} from './MapComponentHelper';
+import {componentConstruct, componentDidUpdate} from './util/MapComponentHelper';
 
 class Marker extends React.Component {
 

@@ -1,39 +1,61 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import MapControl from './MapControl';
+import {componentConstruct, componentDidUpdate} from '../util/MapComponentHelper';
 
-class MouseControl extends MapControl {
+const configureMode = (sControl, prop, prevProp, props) => {
+	const {pan, wheel, zoom} = props;
+	let mode = 0;
+	mode |= pan && SMap.MOUSE_PAN;
+	mode |= zoom && SMap.MOUSE_ZOOM;
+	mode |= wheel && SMap.MOUSE_WHEEL;
+	
+	sControl.configure(mode);
+};
+
+class MouseControl extends React.Component {
 	static displayName = 'MouseControl'
+	
+	static contextTypes = {
+		sMap: PropTypes.object,
+	}
 
 	static propTypes = {
-		allowPan: PropTypes.bool,
-		allowWheel: PropTypes.bool,
-		allowZoom: PropTypes.bool,
+		pan: PropTypes.bool,
+		wheel: PropTypes.bool,
+		zoom: PropTypes.bool,
 	}
 
 	static defaultProps = {
-		allowPan: true,
-		allowWheel: true,
-		allowZoom: true,
+		pan: true,
+		wheel: true,
+		zoom: true,
 	}
 
-	createControl() {
-		const mode = this.resolveMode();
-		return new SMap.Control.Mouse(mode);
+	static updaterMap = {
+		pan: configureMode,
+		wheel: configureMode,
+		zoom: configureMode,
+	}
+	
+	constructor(props, context) {
+		super(props, context);
+	
+		const sControl = new SMap.Control.Mouse();
+		context.sMap.addControl(sControl);
+		this.sControl = sControl;
+		componentConstruct(props, sControl, MouseControl.updaterMap);
 	}
 
-	resolveMode() {
-		const {allowPan, allowWheel, allowZoom} = this.props;
-		let mode = 0;
-		if (allowPan) {
-			mode |= SMap.MOUSE_PAN;
-		}
-		if (allowWheel) {
-			mode |= SMap.MOUSE_WHEEL;
-		}
-		if (allowZoom) {
-			mode |= SMap.MOUSE_ZOOM;
-		}
-		return mode;
+	componentDidUpdate(props) {
+		componentDidUpdate(this, this.sControl, MouseControl.updaterMap, props);
+	}
+	
+	componentWillUnmount() {
+		this.context.sMap.removeControl(this.sControl);
+	}
+
+	render() {
+		return null;
 	}
 
 }
