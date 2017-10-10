@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MapPropTypes from './MapPropTypes';
-import {componentDidUpdate} from './util';
+import {componentDidUpdate, componentConstruct} from './MapComponentHelper';
 
 class Map extends React.Component {
 
-	
+	// region statics
+
 	static LayerIds = {
 		TOURIST: 'DEF_TURIST',
 		PHOTO: 'DEF_OPHOTO',
@@ -59,7 +60,7 @@ class Map extends React.Component {
 			if (sLayer === null) {
 				sLayer = sMap.addDefaultLayer(SMap[Map.LayerIds[layer]]);
 			}
-			prevSLayer.disable();
+			prevSLayer && prevSLayer.disable();
 			sLayer.enable();
 		},
 
@@ -69,16 +70,10 @@ class Map extends React.Component {
 		},
 	}
 
-	constructor(props, context) {
-		super(props, context);
-		this.mapLayers = {};
-		const {zoom, centerCoords, layer} = props;
-		this.state = {
-			zoom,
-			centerCoords,
-			layer,
-			sMap: null,
-		};
+	// endregion
+
+	state = {
+		sMap: null,
 	}
 
 	onComponentMount = this.onComponentMount.bind(this)
@@ -96,14 +91,12 @@ class Map extends React.Component {
 	}
 
 	initiateMap(node) {
-		const {zoom, centerCoords, layer} = this.props,
+		const {zoom, centerCoords} = this.props,
 			[lat, lng] = centerCoords,
 			center = SMap.Coords.fromWGS84(lng, lat);
 
 		const sMap = new SMap(node, center, zoom);
-		this.mapLayers[layer] = sMap.addDefaultLayer(SMap[Map.LayerIds[layer]]);
-		this.mapLayers[layer].enable();
-
+		componentConstruct(this.props, sMap, Map.updateMap);
 		this.setState({sMap});
 	}
 

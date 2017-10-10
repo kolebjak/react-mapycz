@@ -57,7 +57,7 @@ class App extends React.Component {
 				<KeyboardControl/>
 				<CompassControl/>
 				<MarkerLayer>
-					<Marker imageUrl="https://cdn2.iconfinder.com/data/icons/social-media-8/512/pointer.png" coords={[49.4404919, 12.9227611]} title="Zkouška" content={() => <div>Ahoj</div>}/>
+					<Marker anchor={[0,0]} width={16} imageUrl="https://cdn2.iconfinder.com/data/icons/social-media-8/512/pointer.png" coords={[49.4404919, 12.9227611]} title="Zkouška"/>
 					<Marker coords={[49.4402919, 12.9217611]}/>
 					<Marker coords={[49.4404419, 12.9247611]}/>
 					<Marker coords={[49.4400919, 12.9277611]}/>
