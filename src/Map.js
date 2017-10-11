@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MapPropTypes from './MapPropTypes';
+import MapPropTypes from './util/MapPropTypes';
 import BaseLayers from './BaseLayers'; 
 import {componentDidUpdate, componentConstruct} from './util/MapComponentHelper';
 
@@ -38,7 +38,7 @@ class Map extends React.Component {
 			sMap.setZoom(zoom);
 		},
 
-		baseLayers(sMap, layer, prevLayers, {minZoom, maxZoom}) {
+		baseLayers(sMap, layer, prevLayers) {
 			prevLayers && prevLayers.forEach((prevLayerId) => sMap.getLayer(prevLayerId).disable());
 
 			layer.forEach((nextLayerId) => {
@@ -48,8 +48,6 @@ class Map extends React.Component {
 				}
 				nextLayer.enable();
 			});
-
-			sMap.setZoomRange(minZoom, maxZoom);
 		},
 
 		centerCoords(sMap, coords) {
