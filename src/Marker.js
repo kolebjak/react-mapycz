@@ -63,7 +63,7 @@ class Marker extends React.Component {
 	}
 
 	componentWillUnmount() {
-		this.context.sLayer.removeMarker(this.sMarker);
+		this.context.sLayer.removeMarker(this.sMarker, true);
 	}
 
 	render() {
