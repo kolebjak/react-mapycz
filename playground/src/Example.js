@@ -22,10 +22,10 @@ const Example = () => {
 			{/*<KeyboardControl />*/}
 			{/*<ZoomControl title={['Zoom in', 'Zoom out']} labels={LABELS} />*/}
 			{/*<CompassControl title="Move" />*/}
-			{/*<MarkerLayer>*/}
-			{/*	<Marker coords={[55.60501000000001, 8.97171]} />*/}
-			{/*	<Marker coords={[55.547290000000004, 8.897590000000001]} />*/}
-			{/*</MarkerLayer>*/}
+			<MarkerLayer>
+				<Marker coords={[55.60501000000001, 8.97171]} />
+				<Marker coords={[55.547290000000004, 8.897590000000001]} />
+			</MarkerLayer>
 			<PathLayer>
 				<Path coords={examplePath} />
 			</PathLayer>

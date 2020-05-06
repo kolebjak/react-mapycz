@@ -1,40 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import MapPropTypes from './util/MapPropTypes';
+import React, {useContext, useEffect} from 'react';
+import {MarkerLayerContext} from "react-mapycz/MarkerLayer";
 
-class Marker extends React.Component {
+const Marker = (props) => {
+    const markerLayer = useContext(MarkerLayerContext)
 
-	static contextTypes = {
-		sMap: PropTypes.object,
-		sLayer: PropTypes.object,
-	}
+    const {coords: [lat, lng]} = props, coords = SMap.Coords.fromWGS84(lng, lat);
+    const sMarker = new SMap.Marker(coords, false);
+    markerLayer.addMarker(sMarker);
 
-	static propTypes = {
-		coords: MapPropTypes.coords.isRequired,
-		imageUrl: PropTypes.string,
-		width: PropTypes.number,
-		height: PropTypes.number,
-		anchor: PropTypes.arrayOf(PropTypes.number),
-		title: PropTypes.string,
-	}
+    useEffect(() => {
+        return () => {
+            markerLayer.removeMarker(this.sMarker, true)
+        };
+    })
 
-	constructor(props, context) {
-		super(props, context);
-		const {coords: [lat, lng]} = props, coords = SMap.Coords.fromWGS84(lng, lat);
-
-		const sMarker = new SMap.Marker(coords, false);
-
-		this.context.sLayer.addMarker(sMarker);
-		this.sMarker = sMarker;
-	}
-
-	componentWillUnmount() {
-		this.context.sLayer.removeMarker(this.sMarker, true);
-	}
-
-	render() {
-		return null;
-	}
+    return null;
 }
 
 export default Marker;

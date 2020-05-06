@@ -1,63 +1,24 @@
-import React from 'react';
+import React, {createContext, useContext, useEffect} from 'react';
 import PropTypes from 'prop-types';
+import {MapContext} from "react-mapycz/Map";
 
-class MarkerLayer extends React.Component {
-	
-	static contextTypes = {
-		sMap: PropTypes.object,
-	}
+export const MarkerLayerContext = createContext(null)
 
-	static childContextTypes = {
-		sMap: PropTypes.object,
-		sLayer: PropTypes.object,
-	}
+const MarkerLayer = ({ children }) => {
+    const map = useContext(MapContext)
+    const markerLayer = new SMap.Layer.Marker();
 
-	static propTypes = {
-		children: PropTypes.node,
-		isEnabled: PropTypes.bool,
-	}
+    map.addLayer(markerLayer);
+    markerLayer.enable();
 
-	static defaultProps = {
-		isEnabled: true,
-	}
 
-	state = { 
-		sLayer: null,
-	}
+    useEffect(() => {
+        return () => {
+            map.removeLayer(markerLayer)
+        };
+    })
 
-	constructor(props, context) {
-		super(props, context);
-
-		const sLayer = new SMap.Layer.Marker();
-		this.context.sMap.addLayer(sLayer);
-
-		if (this.props.isEnabled) {
-			sLayer.enable();
-		}
-
-		this.state = {
-			sLayer,
-		};
-	}
-		
-	getChildContext() {
-		return {
-			...this.context,
-			sLayer: this.state.sLayer,
-		};
-	}
-
-	componentWillUnmount() {
-		if (this.state.sLayer) {
-			this.context.sMap.removeLayer(this.state.sLayer);
-			this.setState({sLayer: null});
-		}
-	}
-
-	render() {
-		return <div>{this.props.children}</div>;
-	}
-
+    return <MarkerLayerContext.Provider value={markerLayer}>{children}</MarkerLayerContext.Provider>;
 }
 
 export default MarkerLayer;
