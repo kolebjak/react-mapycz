@@ -1,57 +1,26 @@
-import React from 'react';
-import {componentConstruct, componentDidUpdate} from '../util/MapComponentHelper';
-import {positionUpdater, domAttrUpdater} from '../util/Updaters';
+import React, {useContext} from 'react';
+import {MapContext} from "react-mapycz/Map";
+// import {componentConstruct, componentDidUpdate} from '../util/MapComponentHelper';
+// import {positionUpdater, domAttrUpdater} from '../util/Updaters';
 
-class CompassControl extends React.Component {
-	static displayName = 'CompassControl'
-	
-	// static contextTypes = {
-	// 	sMap: PropTypes.object,
-	// }
+const CompassControl = () => {
+    const map = useContext(MapContext);
+    const compassControl = new SMap.Control.Compass();
+    map.addControl(compassControl);
 
-	// static propTypes = {
-	// 	title: PropTypes.string,
-	// 	left: PropTypes.number,
-	// 	top: PropTypes.number,
-	// 	bottom: PropTypes.number,
-	// 	right: PropTypes.number,
-	// }
+    /// TODO:
+    // componentWillUnmount() {
+    // 	this.context.sMap.removeControl(this.sControl);
+    // }
 
-	static defaultProps = {
-		title: 'Posun mapy',
-		left: 10,
-		top: 10,
-	}
-
-	static updaterMap = {
-		title: domAttrUpdater('title'),
-		left: positionUpdater('left'),
-		right: positionUpdater('right'),
-		top: positionUpdater('top'),
-		bottom: positionUpdater('bottom'),
-	}
-
-	constructor(props, context) {
-		super(props, context);
-
-		const sControl = new SMap.Control.Compass();
-		context.sMap.addControl(sControl);
-		this.sControl = sControl;
-		componentConstruct(props, sControl, CompassControl.updaterMap);
-	}
-	
-	componentDidUpdate(props) {
-		componentDidUpdate(this, this.sControl, CompassControl.updaterMap, props);
-	}
-
-	componentWillUnmount() {
-		this.context.sMap.removeControl(this.sControl);
-	}
-
-	render() {
-		return null;	
-	}
-
+    return null;
 }
+
+// TODO:
+// CompassControl.defaultProps = {
+//     title: 'Posun mapy',
+//     left: 10,
+//     top: 10,
+// }
 
 export default CompassControl;
