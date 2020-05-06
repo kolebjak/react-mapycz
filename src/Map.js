@@ -25,12 +25,12 @@ class Map extends React.Component {
 	static defaultProps  = {
 		width: '100%',
 		height: '300px',
-	
 		zoom: 13,
 		minZoom: 1,
 		maxZoom: 21,
-		centerCoords: [49.4404919, 12.9297611],
-		baseLayers: [BaseLayers.SMART_BASE],
+		// centerCoords: [50.126554, 14.417895],
+		centerCoords: [55.604890000000005, 8.97171],
+		baseLayers: [BaseLayers.TURIST_NEW],
 	}
 
 	static updateMap = {

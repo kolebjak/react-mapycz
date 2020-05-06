@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class MarkerLayer extends React.Component {
+class PathLayer extends React.Component {
 	
 	static contextTypes = {
 		sMap: PropTypes.object,
@@ -28,7 +28,7 @@ class MarkerLayer extends React.Component {
 	constructor(props, context) {
 		super(props, context);
 
-		const sLayer = new SMap.Layer.Marker();
+		const sLayer = new SMap.Layer.Geometry();
 		this.context.sMap.addLayer(sLayer);
 
 		if (this.props.isEnabled) {
@@ -53,6 +53,7 @@ class MarkerLayer extends React.Component {
 			this.setState({sLayer: null});
 		}
 	}
+	
 
 	render() {
 		return <div>{this.props.children}</div>;
@@ -60,4 +61,4 @@ class MarkerLayer extends React.Component {
 
 }
 
-export default MarkerLayer;
+export default PathLayer;

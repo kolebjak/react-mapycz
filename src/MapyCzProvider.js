@@ -20,7 +20,7 @@ const MapyCzProvider = (Component) => {
 
 		static defaultProps = {
 			scriptUrl: 'https://api.mapy.cz/loader.js',
-			loader: () => <div>Načítání</div>,
+			loader: () => <div>Loading</div>,
 		}
 
 		constructor(props, context) {
