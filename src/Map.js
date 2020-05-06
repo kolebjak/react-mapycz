@@ -1,109 +1,45 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import MapPropTypes from './util/MapPropTypes';
-import BaseLayers from './BaseLayers'; 
-import {componentDidUpdate, componentConstruct} from './util/MapComponentHelper';
+import React, {createContext, useEffect, useRef, useState} from 'react';
+import BaseLayers from './BaseLayers';
+import MapyCzProvider from "./MapyCzProvider";
 
-class Map extends React.Component {
+export const MapContext = createContext(null)
 
-	static childContextTypes = {
-		sMap: PropTypes.object,
-	}
+const Map = (props) => {
+    const mapNode = useRef(null);
+    const [map, setMap] = useState(null);
+    const {width, height, children} = props;
 
-	static propTypes = {
-		children: PropTypes.node,
-		width: PropTypes.string,
-		height: PropTypes.PropTypes.string,
-		
-		zoom: MapPropTypes.zoom,
-		minZoom: MapPropTypes.zoom,
-		maxZoom: MapPropTypes.zoom,
-		centerCoords: MapPropTypes.coords,
-		baseLayers: PropTypes.arrayOf(PropTypes.number),
-	}
+    useEffect(() => {
+        if (!map && mapNode) {
+            const {zoom, centerCoords} = props;
+            const [lat, lng] = centerCoords;
+            const center = SMap.Coords.fromWGS84(lng, lat);
+            const sMap = new SMap(mapNode.current, center, zoom);
 
-	static defaultProps  = {
-		width: '100%',
-		height: '300px',
-		zoom: 13,
-		minZoom: 1,
-		maxZoom: 21,
-		// centerCoords: [50.126554, 14.417895],
-		centerCoords: [55.604890000000005, 8.97171],
-		baseLayers: [BaseLayers.TURIST_NEW],
-	}
+            const l = sMap.addDefaultLayer(BaseLayers.TURIST_NEW);
+            l.enable();
+            setMap(sMap);
+        }
+    }, []);
 
-	static updateMap = {
-		zoom(sMap, zoom) {
-			sMap.setZoom(zoom);
-		},
+    return (
+        <MapContext.Provider value={map}>
+            <div style={{width, height}} ref={mapNode}>
+                {map && children}
+            </div>
+        </MapContext.Provider>
+    );
+};
 
-		baseLayers(sMap, layer, prevLayers) {
-			prevLayers && prevLayers.forEach((prevLayerId) => sMap.getLayer(prevLayerId).disable());
-
-			layer.forEach((nextLayerId) => {
-				let nextLayer = sMap.getLayer(nextLayerId);
-				if (nextLayer === null) {
-					nextLayer = sMap.addDefaultLayer(nextLayerId);
-				}
-				nextLayer.enable();
-			});
-		},
-
-		centerCoords(sMap, coords) {
-			const [lat, lng] = coords;
-			sMap.setCenter(SMap.Coords.fromWGS84(lng, lat));
-		},
-
-		minZoom(sMap, level, prevLevel, {maxZoom}) {
-			sMap.setZoomRange(level, maxZoom);
-		},
-
-		maxZoom(sMap, level, prevLevel, {minZoom}) {
-			sMap.setZoomRange(minZoom, level);
-		},
-	}
-
-	state = {
-		sMap: null,
-	}
-
-	onComponentMount = this.onComponentMount.bind(this)
-
-	onComponentMount(node) {
-		if (!this.state.sMap && node) {
-			this.initiateMap(node);
-		}
-	}
-
-	getChildContext() {
-		return {
-			sMap: this.state.sMap,
-		};
-	}
-
-	initiateMap(node) {
-		const {zoom, centerCoords} = this.props,
-			[lat, lng] = centerCoords,
-			center = SMap.Coords.fromWGS84(lng, lat);
-
-		const sMap = new SMap(node, center, zoom);
-		componentConstruct(this.props, sMap, Map.updateMap);
-		this.setState({sMap});
-	}
-
-	componentDidUpdate(prevProps) {
-		componentDidUpdate(this, this.state.sMap, Map.updateMap, prevProps);
-	}
-
-	render() {
-		const {width, height, children} = this.props;
-		return (
-			<div style={{width, height}} ref={this.onComponentMount}>
-				{this.state.sMap && children}
-			</div>
-		);
-	}
+Map.defaultProps = {
+    width: '100%',
+    height: '300px',
+    zoom: 13,
+    minZoom: 1,
+    maxZoom: 21,
+    // centerCoords: [50.126554, 14.417895],
+    centerCoords: [55.604890000000005, 8.97171],
+    baseLayers: [BaseLayers.TURIST_NEW],
 }
 
-export default Map;
+export default MapyCzProvider(Map);

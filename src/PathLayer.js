@@ -1,64 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {createContext, useContext, useEffect} from 'react';
+import {MapContext} from "react-mapycz/Map";
 
-class PathLayer extends React.Component {
-	
-	static contextTypes = {
-		sMap: PropTypes.object,
-	}
+export const PathLayerContext = createContext(null)
 
-	static childContextTypes = {
-		sMap: PropTypes.object,
-		sLayer: PropTypes.object,
-	}
+const PathLayer = ({children}) => {
+    const map = useContext(MapContext)
+    const pathLayer = new SMap.Layer.Geometry();
 
-	static propTypes = {
-		children: PropTypes.node,
-		isEnabled: PropTypes.bool,
-	}
+    map.addLayer(pathLayer);
+    pathLayer.enable();
 
-	static defaultProps = {
-		isEnabled: true,
-	}
+    useEffect(() => {
+        return () => { map.removeLayer(pathLayer) };
+    })
 
-	state = { 
-		sLayer: null,
-	}
-
-	constructor(props, context) {
-		super(props, context);
-
-		const sLayer = new SMap.Layer.Geometry();
-		this.context.sMap.addLayer(sLayer);
-
-		if (this.props.isEnabled) {
-			sLayer.enable();
-		}
-
-		this.state = {
-			sLayer,
-		};
-	}
-		
-	getChildContext() {
-		return {
-			...this.context,
-			sLayer: this.state.sLayer,
-		};
-	}
-
-	componentWillUnmount() {
-		if (this.state.sLayer) {
-			this.context.sMap.removeLayer(this.state.sLayer);
-			this.setState({sLayer: null});
-		}
-	}
-	
-
-	render() {
-		return <div>{this.props.children}</div>;
-	}
-
+    return <PathLayerContext.Provider value={pathLayer}>{children}</PathLayerContext.Provider>;
 }
 
 export default PathLayer;

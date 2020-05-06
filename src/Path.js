@@ -1,37 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {useContext} from 'react';
+import {PathLayerContext} from "react-mapycz/PathLayer";
 
-class Path extends React.Component {
+const Path = ({coords}) => {
+    const pathLayer = useContext(PathLayerContext)
 
-	static contextTypes = {
-		sMap: PropTypes.object,
-		sLayer: PropTypes.object,
-	}
+    var points = [];
+    if (coords) {
+        points = coords.map(p => SMap.Coords.fromWGS84(p.lng, p.lat));
+    }
 
-	static propTypes = {
-		coords: PropTypes.any,
-	}
+    var options1 = {
+        color: '#f00', // TODO: color by difficulty / type?
+        width: 3,
+    };
 
-	constructor(props, context) {
-		super(props, context);
+    const polyline = new SMap.Geometry(SMap.GEOMETRY_POLYLINE, null, points, options1);
+    pathLayer.addGeometry(polyline);
 
-		var points1 = [];
-		if(props.coords) {
-			points1 = props.coords.map(p => SMap.Coords.fromWGS84(p.lng, p.lat));
-		}
-
-		var options1 = {
-			color: '#f00', // TODO: color by difficulty / type?
-			width: 3,
-		};
-
-		const polyline = new SMap.Geometry(SMap.GEOMETRY_POLYLINE, null, points1, options1);
-		this.context.sLayer.addGeometry(polyline);
-	}
-
-	render() {
-		return null;
-	}
+    return null;
 }
 
 export default Path;

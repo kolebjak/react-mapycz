@@ -10,7 +10,6 @@ module.exports = {
 	externals: [
 		'react',
 		'react-dom',
-		'prop-types',
 	],
 
 	output: {
@@ -24,7 +23,7 @@ module.exports = {
 		loaders: [
 			{
 				test: /\.js$/,
-				loader: ['babel-loader', 'eslint-loader'],
+				loader: ['babel-loader'],
 			},
 		],
 	},
