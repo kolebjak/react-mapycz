@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {useSMap} from "react-mapycz/hooks";
+import {useSMap} from "./hooks";
 
-const SMapProvider = (Component) => function (props) {
+const SMapProvider = <T extends {}>(Component: React.ComponentType<T>) => function (props: T) {
     const [isLoading, setLoading] = useState(true);
     useSMap(() => setLoading(false))
 

@@ -1,10 +1,12 @@
 import {useEffect} from 'react';
 
-export const useSMap = cb => {
+export const useSMap = (cb:any) => {
     useEffect(() => {
 
         const onload = () => {
+            // @ts-ignore
             window.Loader.async = true;
+            // @ts-ignore
             window.Loader.load(null, null, cb);
         }
 

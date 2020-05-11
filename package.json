@@ -2,40 +2,37 @@
   "name": "react-mapycz",
   "version": "0.1.0",
   "description": "A React component used for embedding Mapy.cz map, adjusting its controls, adding markers etc.",
-  "main": "dist/index.js",
+  "main": "lib/index.ts",
+  "typings": "lib/index.d.ts",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js --progress",
-    "build": "webpack --config webpack.prod.config.js --progress",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "start-storybook -p 9009",
+    "build": "tsc"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kajda90/react-mapycz.git"
-  },
+  "files": [
+    "lib"
+  ],
   "keywords": [
     "react",
     "maps",
     "mapycz"
   ],
-  "author": "Michal Kacerovský <kacerovsky.michal@gmail.com>",
+  "author": "Jakub Kolebaba <jakub@kolebaba.cz>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/kajda90/react-mapycz/issues"
-  },
-  "homepage": "https://github.com/kajda90/react-mapycz#readme",
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.6.0",
-    "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.9.1"
+    "@babel/core": "7.9.0",
+    "@storybook/addon-actions": "5.3.18",
+    "@storybook/addon-links": "5.3.18",
+    "@storybook/addons": "5.3.18",
+    "@storybook/preset-create-react-app": "2.1.1",
+    "@storybook/react": "5.3.18",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "babel-loader": "8.1.0",
+    "babel-preset-react-app": "9.1.2",
+    "typescript": "3.8.3"
   },
   "dependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "can-use-dom": "^0.1.0"
+    "react-dom": "^16.13.1"
   }
 }

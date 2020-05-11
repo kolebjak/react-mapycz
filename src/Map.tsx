@@ -1,10 +1,10 @@
 import React, {createContext, useEffect, useRef, useState} from 'react';
 import BaseLayers from './BaseLayers';
-import MapyCzProvider from "./MapyCzProvider";
+import SMapProvider from "./SMapProvider";
 
 export const MapContext = createContext(null)
 
-const Map = (props) => {
+const Map = (props: any) => {
     const mapNode = useRef(null);
     const [map, setMap] = useState(null);
     const {width, height, children} = props;
@@ -13,7 +13,9 @@ const Map = (props) => {
         if (!map && mapNode) {
             const {zoom, centerCoords} = props;
             const [lat, lng] = centerCoords;
+            // @ts-ignore
             const center = SMap.Coords.fromWGS84(lng, lat);
+            // @ts-ignore
             const sMap = new SMap(mapNode.current, center, zoom);
 
             const l = sMap.addDefaultLayer(BaseLayers.TURIST_NEW);
@@ -42,4 +44,4 @@ Map.defaultProps = {
     baseLayers: [BaseLayers.TURIST_NEW],
 }
 
-export default MapyCzProvider(Map);
+export default SMapProvider(Map);

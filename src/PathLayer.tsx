@@ -1,10 +1,11 @@
 import React, {createContext, useContext, useEffect} from 'react';
-import {MapContext} from "react-mapycz/Map";
+import {MapContext} from "./Map";
 
 export const PathLayerContext = createContext(null)
 
-const PathLayer = ({children}) => {
-    const map = useContext(MapContext)
+const PathLayer = ({children}: any) => {
+    const map = useContext<any>(MapContext)
+    // @ts-ignore
     const pathLayer = new SMap.Layer.Geometry();
 
     map.addLayer(pathLayer);

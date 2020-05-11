@@ -1,14 +1,18 @@
-import React, {createContext, useContext, useEffect} from 'react';
-import PropTypes from 'prop-types';
-import {MapContext} from "react-mapycz/Map";
+import React, {createContext, ReactNode, useContext, useEffect} from 'react';
+import {MapContext} from "./Map";
 
 export const MarkerLayerContext = createContext(null)
 
-const MarkerLayer = ({ children }) => {
-    const map = useContext(MapContext)
+interface MarkerLayerProps {
+    children: ReactNode
+}
+
+const MarkerLayer = ({ children }: MarkerLayerProps) => {
+    const map = useContext<any>(MapContext)
+    // @ts-ignore
     const markerLayer = new SMap.Layer.Marker();
 
-    map.addLayer(markerLayer);
+    map?.addLayer(markerLayer);
     markerLayer.enable();
 
 

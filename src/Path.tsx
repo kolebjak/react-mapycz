@@ -1,11 +1,12 @@
-import React, {useContext} from 'react';
-import {PathLayerContext} from "react-mapycz/PathLayer";
+import {useContext} from 'react';
+import {PathLayerContext} from "./PathLayer";
 
-const Path = ({coords}) => {
-    const pathLayer = useContext(PathLayerContext)
+const Path = ({coords}: any) => {
+    const pathLayer = useContext<any>(PathLayerContext)
 
     var points = [];
     if (coords) {
+        // @ts-ignore
         points = coords.map(p => SMap.Coords.fromWGS84(p.lng, p.lat));
     }
 
@@ -14,8 +15,9 @@ const Path = ({coords}) => {
         width: 3,
     };
 
+    // @ts-ignore
     const polyline = new SMap.Geometry(SMap.GEOMETRY_POLYLINE, null, points, options1);
-    pathLayer.addGeometry(polyline);
+    pathLayer?.addGeometry(polyline);
 
     return null;
 }

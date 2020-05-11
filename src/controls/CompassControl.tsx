@@ -1,10 +1,11 @@
-import React, {useContext} from 'react';
+import {useContext} from 'react';
 import {MapContext} from "../Map";
 
 const CompassControl = () => {
-    const map = useContext(MapContext);
+    const map = useContext<any>(MapContext);
+    // @ts-ignore
     const compassControl = new SMap.Control.Compass();
-    map.addControl(compassControl);
+    map?.addControl(compassControl);
 
     /// TODO:
     // componentWillUnmount() {
