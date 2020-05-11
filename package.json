@@ -1,7 +1,7 @@
 {
   "name": "react-mapycz",
-  "version": "0.1.0",
-  "description": "A React component used for embedding Mapy.cz map, adjusting its controls, adding markers etc.",
+  "version": "1.0.0",
+  "description": "Mapy.cz in React.",
   "main": "lib/index.ts",
   "typings": "lib/index.d.ts",
   "scripts": {
