@@ -2,7 +2,7 @@
   "name": "react-mapycz",
   "version": "1.0.0",
   "description": "Mapy.cz in React.",
-  "main": "lib/index.ts",
+  "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
     "start": "start-storybook -p 9009",

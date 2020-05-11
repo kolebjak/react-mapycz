@@ -1,4 +1,5 @@
-export {default} from './Map';
+export * from './controls';
+export {default as Map } from './Map';
 export {default as MarkerLayer} from './MarkerLayer';
 export {default as Marker} from './Marker';
 export {default as BaseLayers} from './BaseLayers';
