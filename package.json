@@ -1,0 +1,38 @@
+{
+  "name": "react-mapycz",
+  "version": "0.1.0",
+  "description": "A React component used for embedding Mapy.cz map, adjusting its controls, adding markers etc.",
+  "main": "lib/index.ts",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "start": "start-storybook -p 9009",
+    "build": "tsc"
+  },
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "react",
+    "maps",
+    "mapycz"
+  ],
+  "author": "Jakub Kolebaba <jakub@kolebaba.cz>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "7.9.0",
+    "@storybook/addon-actions": "5.3.18",
+    "@storybook/addon-links": "5.3.18",
+    "@storybook/addons": "5.3.18",
+    "@storybook/preset-create-react-app": "2.1.1",
+    "@storybook/react": "5.3.18",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "babel-loader": "8.1.0",
+    "babel-preset-react-app": "9.1.2",
+    "typescript": "3.8.3"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
