@@ -1,59 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {componentConstruct, componentDidUpdate} from '../util/MapComponentHelper';
+import React, {useContext} from 'react';
+import {MapContext} from "react-mapycz/Map";
 
-const configureMode = (sControl, prop, prevProp, props) => {
-	const {pan, zoom} = props;
-	let mode = 0;
-	mode |= pan && SMap.KB_PAN;
-	mode |= zoom && SMap.KB_ZOOM;
-	
-	sControl.configure(mode);
-};
+const KeyboardControl = (props) => {
+    const {pan, zoom} = props;
+    let mode = 0;
 
-class KeyboardControl extends React.Component {
-	static displayName = 'KeyboardControl'
-	
-	static contextTypes = {
-		sMap: PropTypes.object,
-	}
+    mode |= pan && SMap.KB_PAN;
+    mode |= zoom && SMap.KB_ZOOM;
 
-	static propTypes = {
-		pan: PropTypes.bool,
-		zoom: PropTypes.bool,
-	}
+    const map = useContext(MapContext)
+    const mouseControl = new SMap.Control.Keyboard(mode);
+    map.addControl(mouseControl);
 
-	static defaultProps = {
-		pan: true,
-		zoom: true,
-	}
+    return null;
 
-	static updaterMap = {
-		pan: configureMode,
-		zoom: configureMode,
-	}
-	
-	constructor(props, context) {
-		super(props, context);
-	
-		const sControl = new SMap.Control.Keyboard();
-		context.sMap.addControl(sControl);
-		this.sControl = sControl;
-		componentConstruct(props, sControl, KeyboardControl.updaterMap);
-	}
+}
 
-	componentDidUpdate(props) {
-		componentDidUpdate(this, this.sControl, KeyboardControl.updaterMap, props);
-	}
-	
-	componentWillUnmount() {
-		this.context.sMap.removeControl(this.sControl);
-	}
-	
-	render() {
-		return null;
-	}
-
+KeyboardControl.defaultProps = {
+    pan: true,
+    zoom: true,
 }
 
 export default KeyboardControl; 

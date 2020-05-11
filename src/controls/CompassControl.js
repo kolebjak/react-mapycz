@@ -1,7 +1,5 @@
 import React, {useContext} from 'react';
-import {MapContext} from "react-mapycz/Map";
-// import {componentConstruct, componentDidUpdate} from '../util/MapComponentHelper';
-// import {positionUpdater, domAttrUpdater} from '../util/Updaters';
+import {MapContext} from "../Map";
 
 const CompassControl = () => {
     const map = useContext(MapContext);
