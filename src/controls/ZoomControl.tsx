@@ -1,13 +1,28 @@
 import {useContext} from 'react';
 import {MapContext} from "../Map";
 
-const ZoomControl = ({labels, ...options}: any) => {
+interface ZoomControlProps {
+  showZoomMenu?: boolean;
+  labels?: object;
+  left?: number;
+  top?: number;
+  right?: number;
+  bottom?: number;
+}
+
+const ZoomControl = ({labels, showZoomMenu, top, bottom, left, right}: ZoomControlProps) => {
   const map = useContext<any>(MapContext);
-  // @ts-ignore
-  const zoomControl = new SMap.Control.Zoom(labels, options);
+  const zoomControl = new window.SMap.Control.Zoom(labels, {showZoomMenu});
   map.addControl(zoomControl);
 
   // TODO: set position
+  const controlStyles = zoomControl._dom['container'].style;
+
+  // Set position
+  controlStyles['top'] = `${top}px`;
+  controlStyles['right'] = `${right}px`;
+  controlStyles['bottom'] = `${bottom}px`;
+  controlStyles['left'] = `${left}px`;
 
   return null;
 }
@@ -15,8 +30,6 @@ const ZoomControl = ({labels, ...options}: any) => {
 ZoomControl.defaultProps = {
   showZoomMenu: false,
   labels: {},
-  right: 80,
-  top: 100,
 }
 
 export default ZoomControl;
