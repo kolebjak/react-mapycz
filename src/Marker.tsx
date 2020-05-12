@@ -1,13 +1,17 @@
 import {useContext, useEffect} from 'react';
 import {MarkerLayerContext} from "./MarkerLayer";
 
-const Marker = (props: any) => {
+interface MarkerProps {
+    coords: { lng: number, lat: number }
+}
+
+const Marker = (props: MarkerProps) => {
     const markerLayer = useContext<any>(MarkerLayerContext)
 
-    // @ts-ignore
-    const {coords: [lat, lng]} = props, coords = SMap.Coords.fromWGS84(lng, lat);
-    // @ts-ignore
-    const sMarker = new SMap.Marker(coords, false);
+    const { lng, lat } = props.coords;
+
+    const coords = window.SMap.Coords.fromWGS84(lng, lat);
+    const sMarker = new window.SMap.Marker(coords, false);
     markerLayer?.addMarker(sMarker);
 
     useEffect(() => {

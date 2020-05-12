@@ -1,25 +1,30 @@
 import {useContext} from 'react';
 import {PathLayerContext} from "./PathLayer";
 
-const Path = ({coords}: any) => {
-    const pathLayer = useContext<any>(PathLayerContext)
+interface PathProps {
+  color?: string;
+  width: number;
+  coords: Array<{ lng: number, lat: number }>
+}
 
-    var points = [];
-    if (coords) {
-        // @ts-ignore
-        points = coords.map(p => SMap.Coords.fromWGS84(p.lng, p.lat));
-    }
+const Path = ({coords, color, width}: PathProps) => {
+  const pathLayer = useContext<any>(PathLayerContext)
+  const points = coords.map(p => window.SMap.Coords.fromWGS84(p.lng, p.lat));
+  
+  const options = {
+    color,
+    width,
+  };
 
-    var options1 = {
-        color: '#f00', // TODO: color by difficulty / type?
-        width: 3,
-    };
+  const polyline = new window.SMap.Geometry(window.SMap.GEOMETRY_POLYLINE, null, points, options);
+  pathLayer?.addGeometry(polyline);
 
-    // @ts-ignore
-    const polyline = new SMap.Geometry(SMap.GEOMETRY_POLYLINE, null, points, options1);
-    pathLayer?.addGeometry(polyline);
+  return null;
+}
 
-    return null;
+Path.defaultProps = {
+  color: '#f00',
+  width: 3,
 }
 
 export default Path;

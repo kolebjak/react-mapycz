@@ -7,7 +7,8 @@
   "scripts": {
     "prepublishOnly": "yarn build",
     "start": "start-storybook -p 9009",
-    "build": "rm -rf ./lib && tsc"
+    "build": "rm -rf ./lib && tsc",
+    "build:storybook": "build-storybook"
   },
   "files": [
     "lib"

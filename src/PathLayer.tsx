@@ -5,8 +5,7 @@ export const PathLayerContext = createContext(null)
 
 const PathLayer = ({children}: any) => {
     const map = useContext<any>(MapContext)
-    // @ts-ignore
-    const pathLayer = new SMap.Layer.Geometry();
+    const pathLayer = new window.SMap.Layer.Geometry();
 
     map.addLayer(pathLayer);
     pathLayer.enable();
