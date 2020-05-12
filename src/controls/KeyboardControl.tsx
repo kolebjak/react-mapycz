@@ -1,18 +1,20 @@
 import { useContext } from 'react';
 import {MapContext} from "../Map";
 
-const KeyboardControl = (props: any) => {
+interface KeyboardControlProps {
+    pan?: boolean;
+    zoom?: boolean;
+}
+
+const KeyboardControl = (props: KeyboardControlProps) => {
     const {pan, zoom} = props;
     let mode = 0;
 
-    // @ts-ignore
-    mode |= pan && SMap.KB_PAN;
-    // @ts-ignore
-    mode |= zoom && SMap.KB_ZOOM;
+    mode |= pan && window.SMap.KB_PAN;
+    mode |= zoom && window.SMap.KB_ZOOM;
 
     const map = useContext<any>(MapContext)
-    // @ts-ignore
-    const mouseControl = new SMap.Control.Keyboard(mode);
+    const mouseControl = new window.SMap.Control.Keyboard(mode);
     map.addControl(mouseControl);
 
     return null;

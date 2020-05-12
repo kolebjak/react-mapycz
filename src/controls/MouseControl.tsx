@@ -1,35 +1,36 @@
-import {useContext} from 'react';
+import {useContext, useEffect} from 'react';
 import {MapContext} from "../Map";
 
-const MouseControl = (props: any) => {
+interface MouseControlProps {
+  pan?: boolean;
+  wheel?: boolean;
+  zoom?: boolean;
+}
+
+const MouseControl = (props: MouseControlProps) => {
   const {pan, wheel, zoom} = props;
   let mode = 0;
 
-  // @ts-ignore
-  mode |= pan && SMap.MOUSE_PAN;
-  // @ts-ignore
-  mode |= zoom && SMap.MOUSE_ZOOM;
-  // @ts-ignore
-  mode |= wheel && SMap.MOUSE_WHEEL;
-
+  mode |= pan && window.SMap.MOUSE_PAN;
+  mode |= zoom && window.SMap.MOUSE_ZOOM;
+  mode |= wheel && window.SMap.MOUSE_WHEEL;
 
   const map = useContext<any>(MapContext)
-  // @ts-ignore
-  const mouseControl = new SMap.Control.Mouse(mode);
+  const mouseControl = new window.SMap.Control.Mouse(mode);
 
   map.addControl(mouseControl);
-  // TODO:
-  // componentWillUnmount() {
-  // 	this.context.sMap.removeControl(this.sControl);
-  // }
+
+  useEffect(() => {
+    return () => { map.removeControl(mouseControl) };
+  })
 
   return null;
 }
 
 MouseControl.defaultProps = {
-  pan: true,
-  wheel: true,
-  zoom: true,
+  pan: false,
+  wheel: false,
+  zoom: false,
 }
 
 export default MouseControl; 
