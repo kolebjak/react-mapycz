@@ -9,8 +9,7 @@ interface MarkerLayerProps {
 
 const MarkerLayer = ({ children }: MarkerLayerProps) => {
     const map = useContext<any>(MapContext)
-    // @ts-ignore
-    const markerLayer = new SMap.Layer.Marker();
+    const markerLayer = new window.SMap.Layer.Marker();
 
     map?.addLayer(markerLayer);
     markerLayer.enable();
