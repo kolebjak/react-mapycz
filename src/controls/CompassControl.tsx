@@ -1,25 +1,31 @@
-import {useContext} from 'react';
+import {useContext, useEffect} from 'react';
 import {MapContext} from "../Map";
 
-const CompassControl = () => {
+interface CompassControlProps {
+    left?: number;
+    top?: number;
+    right?: number;
+    bottom?: number;
+}
+
+const CompassControl = ({ top, left, right, bottom }: CompassControlProps) => {
     const map = useContext<any>(MapContext);
-    // @ts-ignore
-    const compassControl = new SMap.Control.Compass();
+    const compassControl = new window.SMap.Control.Compass();
     map?.addControl(compassControl);
 
-    /// TODO:
-    // componentWillUnmount() {
-    // 	this.context.sMap.removeControl(this.sControl);
-    // }
+    const controlStyles = compassControl._dom['container'].style;
+
+    // Set position
+    controlStyles['top'] = `${top}px`;
+    controlStyles['right'] = `${right}px`;
+    controlStyles['bottom'] = `${bottom}px`;
+    controlStyles['left'] = `${left}px`;
+
+    useEffect(() => {
+        return () => { map.removeControl(compassControl) };
+    })
 
     return null;
 }
-
-// TODO:
-// CompassControl.defaultProps = {
-//     title: 'Posun mapy',
-//     left: 10,
-//     top: 10,
-// }
 
 export default CompassControl;

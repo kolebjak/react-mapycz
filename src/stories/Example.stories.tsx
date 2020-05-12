@@ -1,6 +1,6 @@
 import React from 'react';
-import Map, {Marker, MarkerLayer,Path, PathLayer} from '../index';
-import {MouseControl, ZoomControl, KeyboardControl } from '../controls';
+import {Map, Marker, MarkerLayer,Path, PathLayer} from '../index';
+import {MouseControl, CompassControl, ZoomControl, KeyboardControl } from '../controls';
 import {storiesOf} from "@storybook/react";
 
 export const examplePath = [{'lat': 55.604890000000005, 'lng': 8.97171}, {
@@ -145,8 +145,8 @@ const ExampleStories = () => {
 		<Map height="90vh">
 			<KeyboardControl />
 			<ZoomControl />
-			<MouseControl zoom={false}/>
-			{/*<CompassControl />*/}
+			<MouseControl zoom={true} pan={true} wheel={true} />
+			<CompassControl right={10} top={50} />
 			<MarkerLayer>
 				<Marker coords={[55.60501000000001, 8.97171]} />
 				<Marker coords={[55.547290000000004, 8.897590000000001]} />
