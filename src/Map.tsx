@@ -4,44 +4,50 @@ import SMapProvider from "./SMapProvider";
 
 export const MapContext = createContext(null)
 
-const Map = (props: any) => {
-    const mapNode = useRef(null);
-    const [map, setMap] = useState(null);
-    const {width, height, children} = props;
+interface MapProps {
+  center: { lat: number, lng: number };
+  width?: string;
+  height?: string;
+  zoom?: number;
+  minZoom?: number;
+  maxZoom?: number;
+  baseLayers?: number[];
+  children?: React.ReactNode;
+}
 
-    useEffect(() => {
-        if (!map && mapNode) {
-            const {zoom, centerCoords} = props;
-            const [lat, lng] = centerCoords;
-            // @ts-ignore
-            const center = SMap.Coords.fromWGS84(lng, lat);
-            // @ts-ignore
-            const sMap = new SMap(mapNode.current, center, zoom);
+const Map = (props: MapProps) => {
+  const mapNode = useRef(null);
+  const [map, setMap] = useState(null);
+  const {width, height, children} = props;
 
-            const l = sMap.addDefaultLayer(BaseLayers.TURIST_NEW);
-            l.enable();
-            setMap(sMap);
-        }
-    }, []);
+  useEffect(() => {
+    if (!map && mapNode) {
+      const {zoom, center} = props;
+      const centerCoords = window.SMap.Coords.fromWGS84(center.lng, center.lat);
+      const sMap = new window.SMap(mapNode.current, centerCoords, zoom);
 
-    return (
-        <MapContext.Provider value={map}>
-            <div style={{width, height}} ref={mapNode}>
-                {map && children}
-            </div>
-        </MapContext.Provider>
-    );
+      const l = sMap.addDefaultLayer(BaseLayers.TURIST_NEW);
+      l.enable();
+      setMap(sMap);
+    }
+  }, []);
+
+  return (
+    <MapContext.Provider value={map}>
+      <div style={{width, height}} ref={mapNode}>
+        {map && children}
+      </div>
+    </MapContext.Provider>
+  );
 };
 
 Map.defaultProps = {
-    width: '100%',
-    height: '300px',
-    zoom: 13,
-    minZoom: 1,
-    maxZoom: 21,
-    // centerCoords: [50.126554, 14.417895],
-    centerCoords: [55.604890000000005, 8.97171],
-    baseLayers: [BaseLayers.TURIST_NEW],
+  width: '100%',
+  height: '300px',
+  zoom: 13,
+  minZoom: 1,
+  maxZoom: 21,
+  baseLayers: [BaseLayers.TURIST_NEW],
 }
 
 export default SMapProvider(Map);

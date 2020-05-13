@@ -15,6 +15,9 @@ import { Map } from 'react-mapycz'
 const App = () => <Map />
 ```
 
+You can pass `center` prop to the `Map` to set default view coordinates. 
+ex. `center={{lat: 55.604890000000005, lng: 8.97171}}`
+
 ## Markers
 
 Show markers on a map. Markers have to be wrapped in MarkerLayer. 
@@ -23,7 +26,7 @@ Show markers on a map. Markers have to be wrapped in MarkerLayer.
 import { Map, MarkerLayer, Marker } from 'react-mapycz'
 
 const App = () => (
-    <Map>
+    <Map center={{lat: 55.604890000000005, lng: 8.97171}}>
         <MarkerLayer>
             <Marker coords={[55.60501000000001, 8.97171]} />
             <Marker coords={[55.547290000000004, 8.897590000000001]} />
