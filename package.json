@@ -2,13 +2,16 @@
   "name": "react-mapycz",
   "version": "1.0.1",
   "description": "Mapy.cz in React.",
+  "homepage": "https://kolebjak.github.io/react-mapycz/",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
     "prepublishOnly": "yarn build",
     "start": "start-storybook -p 9009",
     "build": "rm -rf ./lib && tsc",
-    "build:storybook": "build-storybook"
+    "build:storybook": "build-storybook",
+    "predeploy": "yarn build:storybook",
+    "deploy": "NODE_DEBUG=gh-pages gh-pages -d storybook-static"
   },
   "files": [
     "lib"
@@ -31,6 +34,7 @@
     "@types/react-dom": "^16.9.8",
     "babel-loader": "8.1.0",
     "babel-preset-react-app": "9.1.2",
+    "gh-pages": "^2.2.0",
     "typescript": "3.9.3"
   },
   "dependencies": {
