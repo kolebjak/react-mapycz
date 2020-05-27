@@ -5,6 +5,10 @@ Mapy.cz in React
 
 `yarn add react-mapycz` or `npm i react-mapycz`
 
+# Demo
+
+http://falsy.cz/react-mapycz/
+
 # Usage 
 
 ## Map
