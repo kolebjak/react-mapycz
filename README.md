@@ -28,8 +28,8 @@ import { Map, MarkerLayer, Marker } from 'react-mapycz'
 const App = () => (
     <Map center={{lat: 55.604890000000005, lng: 8.97171}}>
         <MarkerLayer>
-            <Marker coords={[55.60501000000001, 8.97171]} />
-            <Marker coords={[55.547290000000004, 8.897590000000001]} />
+            <Marker coords={{lat: 55.60501000000001, lng: 8.97171}} />
+            <Marker coords={{lat: 55.547290000000004, lng: 8.897590000000001}} />
         </MarkerLayer>
     </Map>
 )
