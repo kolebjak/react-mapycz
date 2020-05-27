@@ -15,3 +15,5 @@ jspm_packages/
 
 node_modules/
 playground/__build__
+storybook-static
+lib
