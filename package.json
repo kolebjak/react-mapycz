@@ -2,7 +2,7 @@
   "name": "react-mapycz",
   "version": "1.0.2",
   "description": "Mapy.cz in React.",
-  "homepage": "https://kolebjak.github.io/react-mapycz/",
+  "homepage": "http://falsy.cz/react-mapycz/",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
