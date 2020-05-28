@@ -1,6 +1,6 @@
 {
   "name": "react-mapycz",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Mapy.cz in React.",
   "homepage": "http://falsy.cz/react-mapycz/",
   "main": "lib/index.js",
