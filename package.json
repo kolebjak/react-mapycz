@@ -35,7 +35,7 @@
     "babel-loader": "8.1.0",
     "babel-preset-react-app": "9.1.2",
     "gh-pages": "^3.0.0",
-    "typescript": "3.9.6"
+    "typescript": "3.9.7"
   },
   "dependencies": {
     "react": "^16.13.1",
