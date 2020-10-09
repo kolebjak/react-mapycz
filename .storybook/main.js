@@ -3,6 +3,7 @@ module.exports = {
     addons: [
         '@storybook/addon-actions',
         '@storybook/addon-links',
+        '@storybook/addon-knobs',
     ],
     webpackFinal: async config => {
         config.module.rules.push({
