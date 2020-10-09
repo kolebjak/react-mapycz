@@ -9,7 +9,7 @@ Mapy.cz in React
 
 http://falsy.cz/react-mapycz/
 
-# Run storyook
+# Run Storybook
 `npm start start-storybook -p 9009`
 
 # Usage 
