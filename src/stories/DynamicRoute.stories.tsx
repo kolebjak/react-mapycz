@@ -4,7 +4,7 @@ import {MouseControl, CompassControl, ZoomControl, KeyboardControl} from '../con
 import {storiesOf} from "@storybook/react";
 import { withKnobs, array, select, boolean, number, color } from '@storybook/addon-knobs';
 
-export const examplePath = [{'lat': 49.5146483, 'lng': 18.5291239}, { 'lat': 49.5440406, 'lng': 18.4509133 }, {'lat': 49.5457367, 'lng': 18.4479764}];
+export const examplePath = [{'lat': 49.5329453, 'lng': 18.5110686}, { 'lat': 49.5440406, 'lng': 18.4509133 }, {'lat': 49.5457367, 'lng': 18.4479764}];
 
 const colorLabel = 'Path color';
 const colorDefaultValue = '#f00';
