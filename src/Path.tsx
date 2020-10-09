@@ -1,6 +1,9 @@
 import {useContext} from 'react';
 import {PathLayerContext} from "./PathLayer";
 
+interface Results {
+  [key:string]: any;
+}
 interface PathProps {
   color?: string;
   width: number;
@@ -17,8 +20,8 @@ const Path = ({ coords, color, width, criterion, dynamicRoute }: PathProps) => {
     width,
   };
     
-  const getDynamicPath = (results: { results: any }) => {
-    const newPoints = results.getResults().geometry;
+  const getDynamicPath = (results: Results) => {
+    const newPoints = results && results.getResults().geometry;
     const polyline = new window.SMap.Geometry(window.SMap.GEOMETRY_POLYLINE, null, newPoints, options);
     pathLayer?.addGeometry(polyline);
   }
