@@ -25,6 +25,7 @@ const criterionOptions = {
   Turist1: 'turist1',
   Turist2: 'turist2',
 };
+
 const criterionDefaultValue = 'turist1';
 
 const DynamicRouteStories = () => (
@@ -41,7 +42,6 @@ const DynamicRouteStories = () => (
     </PathLayer>
   </Map>
 );
-
 
 const stories = storiesOf('Map', module);
 stories.addDecorator(withKnobs)
