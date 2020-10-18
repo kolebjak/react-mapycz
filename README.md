@@ -105,3 +105,9 @@ const App = () => (
     </Map>
 )
 ```
+
+# License
+This library is using Mapy.cz API. By its usage you acknowledge that you agree to the [Terms and Conditions](http://api.mapy.cz/#pact). 
+
+
+  
