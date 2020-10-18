@@ -2,7 +2,7 @@ import React from 'react';
 import {Map, MarkerLayer, Path, PathLayer, PathMarker} from '../index';
 import {MouseControl, CompassControl, ZoomControl, KeyboardControl} from '../controls';
 import {storiesOf} from "@storybook/react";
-import { withKnobs, array, select, boolean, number, color } from '@storybook/addon-knobs';
+import { withKnobs, select, boolean, number, color } from '@storybook/addon-knobs';
 
 export const examplePath = [{'lat': 49.5329453, 'lng': 18.5110686}, { 'lat': 49.5440406, 'lng': 18.4509133 }, {'lat': 49.5457367, 'lng': 18.4479764}];
 
@@ -12,7 +12,6 @@ const colorDefaultValue = '#f00';
 const pathWidthLabel = 'Path width';
 const pathDefaultValue = 3;
 
-const pathCoordsLabel = 'Path coords (array of objects Array<{ lng: number, lat: number }>)';
 const pathCoordsDefaultValue = examplePath;
 
 const criterionLabel = 'Criterion';
@@ -38,7 +37,7 @@ const DynamicRouteStories = () => (
       <PathMarker coords={examplePath} />
     </MarkerLayer>
     <PathLayer>
-      <Path coords={array(pathCoordsLabel, pathCoordsDefaultValue)} criterion={select(criterionLabel, criterionOptions, criterionDefaultValue)} color={color(colorLabel, colorDefaultValue)} width={number(pathWidthLabel, pathDefaultValue)} dynamicRoute={boolean('Dynamic', true)}/>
+      <Path coords={pathCoordsDefaultValue} criterion={select<any>(criterionLabel, criterionOptions, criterionDefaultValue)} color={color(colorLabel, colorDefaultValue)} width={number(pathWidthLabel, pathDefaultValue)} dynamicRoute={boolean('Dynamic', true)}/>
     </PathLayer>
   </Map>
 );

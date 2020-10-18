@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./home-static",
+    "target": "es5",
+    "module": "es6",
+    "jsx": "react",
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "home"
+  ]
+}
