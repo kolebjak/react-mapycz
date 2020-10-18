@@ -36,9 +36,11 @@
     "babel-loader": "^8.1.0",
     "babel-preset-react-app": "^9.1.2",
     "gh-pages": "^3.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "typescript": "4.0.3"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }
