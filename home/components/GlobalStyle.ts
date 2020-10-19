@@ -1,6 +1,9 @@
 import {createGlobalStyle} from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     font-family: 'Open Sans';
     margin: 0;

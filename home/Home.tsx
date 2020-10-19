@@ -5,6 +5,7 @@ import styled from "styled-components";
 import {Map} from "../src";
 import Section from "./components/Section";
 import GitHubButton from 'react-github-btn';
+import ScrollDown from "./components/ScrollDown";
 
 const code = `
   <Map height="200px" center={{lat: 50.0755, lng: 14.4378}} />
@@ -34,6 +35,7 @@ const Home = () => {
           {code}
         </SyntaxHighlighter>
       </div>
+      <ScrollDown href="#section-element" />
     </SHome>
   )
 }

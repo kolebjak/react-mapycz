@@ -5,6 +5,7 @@ import {Map, Marker, MarkerLayer} from "../src";
 import {githubGist} from "react-syntax-highlighter/dist/esm/styles/hljs";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import Section from "./components/Section";
+import ScrollDown from "./components/ScrollDown";
 
 const SElement = styled(Section)`
   display: flex;
@@ -26,15 +27,8 @@ const Element = () => {
   `
 
   return (
-    <SElement>
+    <SElement id="section-element">
       <div style={{width: '40%'}}>
-        <SyntaxHighlighter
-          language="jsx"
-          wrapLongLines={true}
-          style={githubGist}
-        >
-          {code}
-        </SyntaxHighlighter>
         <Map height="200px" center={{lat: 50.0755, lng: 14.4378}}>
           <KeyboardControl/>
           <ZoomControl/>
@@ -44,10 +38,17 @@ const Element = () => {
             <Marker coords={{lat: 50.0755, lng: 14.4378}}/>
           </MarkerLayer>
         </Map>
+        <SyntaxHighlighter
+          language="jsx"
+          wrapLongLines={true}
+          style={githubGist}
+        >
+          {code}
+        </SyntaxHighlighter>
       </div>
       <div style={{width: '50%'}}>
         <h2>Elements</h2>
-        <p>Various elements is ready to use. It's up to you how you compose it together.</p>
+        <p>Various elements is ready to use. It's up to you how you combine it.</p>
         <p>
           <strong>Controls</strong>
           <ul>
@@ -65,6 +66,7 @@ const Element = () => {
           </ul>
         </p>
       </div>
+      <ScrollDown href="#section-dynamic" />
     </SElement>
   )
 }
