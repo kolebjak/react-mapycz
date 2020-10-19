@@ -4,7 +4,22 @@ import {MouseControl, CompassControl, ZoomControl, KeyboardControl} from '../con
 import {storiesOf} from "@storybook/react";
 import { withKnobs, select, boolean, number, color } from '@storybook/addon-knobs';
 
-export const examplePath = [{'lat': 49.5329453, 'lng': 18.5110686}, { 'lat': 49.5440406, 'lng': 18.4509133 }, {'lat': 49.5457367, 'lng': 18.4479764}];
+export const examplePath = [
+  { 'lat': 49.5329453, 'lng': 18.5110686 },
+  { 'lat': 49.5440406, 'lng': 18.4509133 },
+  { 'lat': 49.5457367, 'lng': 18.4479764 }
+];
+
+const criterionOptions = {
+  'Fast (car)': 'fast',
+  'Short (car)': 'short',
+  Bike1: 'bike1',
+  Bike2: 'bike2',
+  Bike3: 'bike3',
+  Turist1: 'turist1',
+  Turist2: 'turist2',
+};
+
 
 const colorLabel = 'Path color';
 const colorDefaultValue = '#f00';
@@ -15,15 +30,6 @@ const pathDefaultValue = 3;
 const pathCoordsDefaultValue = examplePath;
 
 const criterionLabel = 'Criterion';
-const criterionOptions = {
-  'Fast (car)': 'fast',
-  'Short (car)': 'short',
-  Bike1: 'bike1',
-  Bike2: 'bike2',
-  Bike3: 'bike3',
-  Turist1: 'turist1',
-  Turist2: 'turist2',
-};
 
 const criterionDefaultValue = 'turist1';
 

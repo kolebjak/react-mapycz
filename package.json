@@ -6,6 +6,7 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
+    "start:sb": "start-storybook -p 9009",
     "prepublishOnly": "yarn build",
     "start": "webpack serve",
     "build": "rm -rf ./lib && tsc -p tsconfig.build.json",
@@ -42,6 +43,7 @@
     "html-webpack-plugin": "^4.5.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-github-btn": "^1.2.0",
     "react-syntax-highlighter": "^15.2.1",
     "styled-components": "^5.2.0",
     "ts-loader": "^8.0.5",

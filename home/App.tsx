@@ -2,6 +2,7 @@ import React from 'react';
 import GlobalStyle from './components/GlobalStyle';
 import Home from "./Home";
 import DynamicRoute from "./DynamicRoute";
+import Element from "./Element";
 
 declare global {
   interface Window {
@@ -14,6 +15,7 @@ const App = () => {
     <>
       <GlobalStyle />
       <Home />
+      <Element />
       <DynamicRoute />
     </>
   )

@@ -7,11 +7,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     -webkit-font-smoothing: antialiased;
   }
-  
-  ul {
-    margin: 0;
-    padding: 0;
-  }
 `;
 
 export default GlobalStyle;
