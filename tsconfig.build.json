@@ -1,0 +1,36 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "isolatedModules": true,
+    "noEmit": false,
+    "outDir": "lib",
+    "strict": true,
+    "target": "es5",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "sourceMap": true,
+    "allowJs": false,
+    "moduleResolution": "node",
+    "rootDir": "src"
+  },
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.stories.tsx",
+    "node_modules",
+    "coverage",
+    "__tests__",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts"
+  ],
+  "include": [
+    "src"
+  ]
+}
