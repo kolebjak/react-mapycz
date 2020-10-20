@@ -1,4 +1,7 @@
 # react-mapycz
+
+![Node.js CI](https://github.com/flsy/react-mapycz/workflows/Node.js%20CI/badge.svg)
+
 Mapy.cz in React
 
 # Installation
