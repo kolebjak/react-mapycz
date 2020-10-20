@@ -1,6 +1,7 @@
 # react-mapycz
 
 ![Node.js CI](https://github.com/flsy/react-mapycz/workflows/Node.js%20CI/badge.svg)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8c2fb679fd2700b53a83/maintainability)](https://codeclimate.com/github/flsy/react-mapycz/maintainability)
 
 Mapy.cz in React
 
