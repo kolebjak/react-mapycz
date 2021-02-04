@@ -30,7 +30,7 @@
     "@types/styled-components": "^5.1.4",
     "@types/webpack": "^4.41.22",
     "gh-pages": "^3.0.0",
-    "html-webpack-plugin": "^4.5.0",
+    "html-webpack-plugin": "^5.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-github-btn": "^1.2.0",
