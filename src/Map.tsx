@@ -1,6 +1,7 @@
 import React, {createContext, useEffect, useRef, useState} from 'react';
 import BaseLayers from './BaseLayers';
 import SMapProvider from "./SMapProvider";
+import styled from 'styled-components'
 
 export const MapContext = createContext(null)
 
@@ -15,10 +16,17 @@ interface MapProps {
   children?: React.ReactNode;
 }
 
+// Override PreflightCSS presets
+const StyledMap = styled.div`
+  img {
+    max-width: initial !important;
+  }
+`
+
 const Map = (props: MapProps) => {
   const mapNode = useRef(null);
   const [map, setMap] = useState(null);
-  const {width, height, children} = props;
+  const { width, height, children } = props;
 
   useEffect(() => {
     if (!map && mapNode) {
@@ -34,9 +42,9 @@ const Map = (props: MapProps) => {
 
   return (
     <MapContext.Provider value={map}>
-      <div style={{width, height}} ref={mapNode}>
+      <StyledMap style={{ width, height }} ref={mapNode}>
         {map && children}
-      </div>
+      </StyledMap>
     </MapContext.Provider>
   );
 };
