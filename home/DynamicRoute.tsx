@@ -69,6 +69,7 @@ const DynamicRoute = () => {
           {code}
         </SyntaxHighlighter>
       </div>
+      <ScrollDown href="#section-info" />
     </SDynamicRoute>
   )
 }

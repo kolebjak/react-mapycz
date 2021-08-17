@@ -17,6 +17,7 @@ const App = () => {
       <Home />
       <Element />
       <DynamicRoute />
+      <RouteInfo />
     </>
   )
 }
