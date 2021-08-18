@@ -5,6 +5,7 @@ import {githubGist} from "react-syntax-highlighter/dist/esm/styles/hljs";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import Section from "./components/Section";
 import {Radio, RadioGroup} from "./components/Radio";
+import ScrollDown from './components/ScrollDown'
 
 const SDynamicRoute = styled(Section)`
   display: flex;
