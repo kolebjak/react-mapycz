@@ -74,17 +74,17 @@ const RouteInfo = () => {
         <h1>Route info</h1>
         Get basic information about your route.
         <h2>Available data:</h2>
-        <p>Id: {routeInfo?.id!}</p>
-        <p>Descent: {routeInfo?.descent!} [m]</p>
-        <p>Ascent: {routeInfo?.ascent!} [m]</p>
+        <p>Id: {routeInfo?.id}</p>
+        <p>Descent: {routeInfo?.descent} [m]</p>
+        <p>Ascent: {routeInfo?.ascent} [m]</p>
         <p>
-          In Europe (not in Czech republic): {routeInfo?.inEurope!.toString()}
+          In Europe (not in Czech republic): {routeInfo?.inEurope?.toString()}
         </p>
-        <p>Length: {routeInfo?.length!} [m]</p>
-        <p>Time: {routeInfo?.time!} [s]</p>
+        <p>Length: {routeInfo?.length} [m]</p>
+        <p>Time: {routeInfo?.time} [s]</p>
         <p>URL:</p>{" "}
-        <a href={routeInfo?.url!} target="_blank">
-          {routeInfo?.url!}
+        <a href={routeInfo?.url} target="_blank" rel="noopener noreferrer">
+          {routeInfo?.url}
         </a>
       </div>
     </SRouteInfo>
