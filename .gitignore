@@ -17,6 +17,7 @@ node_modules/
 playground/__build__
 storybook-static
 lib
+.DS_Store
 
 home-static/
 .idea
