@@ -6,6 +6,8 @@ import { Coordinates, MapEvent } from './types';
 
 export const MapContext = createContext(null)
 
+type EventListener = (e: MapEvent, coordinates: Coordinates) => void
+
 interface MapProps {
   center: { lat: number, lng: number };
   width?: string;
@@ -15,7 +17,7 @@ interface MapProps {
   maxZoom?: number;
   baseLayers?: number[];
   children?: React.ReactNode;
-  onEvent?: (e: MapEvent, coordinates: Coordinates) => void
+  onEvent?: EventListener;
   eventNameListener? : string
 }
 
@@ -26,16 +28,17 @@ const StyledMap = styled.div`
   }
 `
 
+const handleEventListener = (e: MapEvent, sMap: unknown, onEvent: EventListener) => {
+  const coordinates = (e?.data?.event) 
+    ? window.SMap.Coords.fromEvent(e.data.event, sMap) 
+    : null;
+  onEvent(e, coordinates)
+}
+
 const Map = (props: MapProps) => {
   const mapNode = useRef(null);
   const [map, setMap] = useState(null);
-  const { 
-    width, 
-    height, 
-    children, 
-    onEvent, 
-    eventNameListener = "*" 
-  } = props;
+  const {width, height, children, onEvent, eventNameListener = "*"} = props;
 
   useEffect(() => {
     if (!map && mapNode) {
@@ -43,19 +46,17 @@ const Map = (props: MapProps) => {
       const centerCoords = window.SMap.Coords.fromWGS84(center.lng, center.lat);
       const sMap = new window.SMap(mapNode.current, centerCoords, zoom);
       const l = sMap.addDefaultLayer(BaseLayers.TURIST_NEW);
-      const signals = sMap.getSignals();
       l.enable();
       setMap(sMap);
-
       if (onEvent) {
-        signals.addListener(window, eventNameListener, (e: MapEvent)=>{
-          const coordinates = (e?.data?.event) 
-            ? window.SMap.Coords.fromEvent(e.data.event, sMap) 
-            : null;
-          onEvent(e, coordinates)
-        });
+        const signals = sMap.getSignals();
+        const eventListener = signals.addListener(window, eventNameListener, (e: MapEvent) => handleEventListener(e, sMap, onEvent));
+        return () => {
+          signals.removeListener(window, eventNameListener, eventListener)
+        }
       }
     }
+    return
   }, []);
 
   return (
