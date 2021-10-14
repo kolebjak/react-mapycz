@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import {Map, Path, PathLayer} from "../src";
+import {Coordinates, Map, MapEvent, Path, PathLayer} from "../src";
 import {githubGist} from "react-syntax-highlighter/dist/esm/styles/hljs";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import Section from "./components/Section";
@@ -31,6 +31,11 @@ const DynamicRoute = () => {
       </PathLayer>
     </Map>
   `
+  const onMapEvent = (e: MapEvent, coordinates: Coordinates) => { 
+    if(e.type === "map-click") {
+      console.log("Clicked", coordinates)
+    }
+  }
 
   return (
     <SDynamicRoute id="section-dynamic">
@@ -49,7 +54,7 @@ const DynamicRoute = () => {
         </RadioGroup>
       </div>
       <div style={{width: '40%'}}>
-        <Map height="200px" center={{lat: 49.536, lng: 18.499}} zoom={12}>
+        <Map height="200px" center={{lat: 49.536, lng: 18.499}} zoom={12} onEvent={onMapEvent}>
           <PathLayer>
             <Path
               coords={[

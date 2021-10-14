@@ -6,3 +6,4 @@ export {default as BaseLayers} from './BaseLayers';
 export {default as Path} from './Path';
 export {default as PathLayer} from './PathLayer';
 export {default as PathMarker} from './PathMarker';
+export type { MapEvent, Coordinates } from './types';
