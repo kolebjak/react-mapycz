@@ -1,27 +1,10 @@
 import {useContext} from 'react';
 import {PathLayerContext} from "./PathLayer";
-
-export const OUTLINE_STYLES = {
-  SOLID: 0,
-  DASH: 1,
-  DOT: 2,
-  DASHDOT: 3,
-}
+import { GeometryOptions } from './types';
 
 interface PolygonProps {
   coords: Array<{ lng: number, lat: number }>
-  options?: {
-    title?: string;
-    minDist?: number;
-    color?: string;
-    opacity?: number;
-    width?: number;
-    style?: unknown;
-    outlineColor?: string;
-    outlineOpacity?: number;
-    outlineWidth?: number;
-    outlineStyle?: number;
-  }
+  options?: GeometryOptions;
   id?: string;
 }
 
