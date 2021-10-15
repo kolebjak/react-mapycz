@@ -8,4 +8,4 @@ export {default as PathLayer} from './PathLayer';
 export {default as PathMarker} from './PathMarker';
 export {default as Polygon} from './Polygon';
 export type { MapEvent, Coordinates, MarkerCardConfiguration, GeometryOptions } from './types';
-export { OutlineStyle } from './types';
+export { LineStyle } from './types';

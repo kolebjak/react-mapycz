@@ -67,7 +67,7 @@ export type MarkerCardConfiguration = {
   }
 }
 
-export enum OutlineStyle {
+export enum LineStyle {
   solid = 0,
   dash = 1,
   dot = 2,
@@ -80,9 +80,9 @@ export type GeometryOptions = {
   color?: string;
   opacity?: number;
   width?: number;
-  style?: unknown;
+  style?: LineStyle;
   outlineColor?: string;
   outlineOpacity?: number;
   outlineWidth?: number;
-  outlineStyle?: OutlineStyle;
+  outlineStyle?: LineStyle;
 }

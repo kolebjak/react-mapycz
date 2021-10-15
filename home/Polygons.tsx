@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {Coordinates, Map, MapEvent, MouseControl, PathLayer, Polygon, OutlineStyle} from "../src";
+import {Coordinates, Map, MapEvent, MouseControl, PathLayer, Polygon, LineStyle} from "../src";
 import {githubGist} from "react-syntax-highlighter/dist/esm/styles/hljs";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import Section from "./components/Section";
@@ -32,7 +32,7 @@ const Polygons = () => {
             color: "red",
             outlineColor: "blue",
             opacity: 0.5,
-            outlineStyle: OUTLINE_STYLES.DASHDOT,
+            outlineStyle: LineStyle.dashDot,
           }}
         />
       </PathLayer>
@@ -63,7 +63,7 @@ const Polygons = () => {
                 color: "red",
                 outlineColor: "blue",
                 opacity: 0.5,
-                outlineStyle: OutlineStyle.dashDot,
+                outlineStyle: LineStyle.dashDot,
               }}
             />
           </PathLayer>
