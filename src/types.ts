@@ -46,8 +46,8 @@ export type MapEvent = {
       x: number;
       y: number;
     };
-  }
-  target: HTMLInputElement;
+  };
+  target: any;
   timeStamp: number;
   type: string; 
 }

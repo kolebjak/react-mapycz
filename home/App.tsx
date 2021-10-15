@@ -2,6 +2,7 @@ import React from 'react';
 import GlobalStyle from './components/GlobalStyle';
 import Home from "./Home";
 import DynamicRoute from "./DynamicRoute";
+import Polygons from "./Polygons";
 import Element from "./Element";
 import RouteInfo from './RouteInfo'
 
@@ -18,6 +19,7 @@ const App = () => {
       <Home />
       <Element />
       <DynamicRoute />
+      <Polygons />
       <RouteInfo />
     </>
   )
