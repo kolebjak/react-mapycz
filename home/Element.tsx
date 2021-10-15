@@ -21,21 +21,31 @@ const Element = () => {
       <MouseControl zoom={true} pan={true} wheel={true}/>
       <CompassControl right={10} top={50}/>
       <MarkerLayer>
-        <Marker coords={{lat: 50.0755, lng: 14.4378}}/>
+        <Marker coords={{lat: 50.0755, lng: 14.4378}} card={markerCard}/>
       </MarkerLayer>
     </Map>
   `
 
+const markerCard = {
+  header: "<strong>Card header</strong>",
+  body: "<p>Card body</p><img src='https://via.placeholder.com/150x60/454545/eb4034'/>",
+  footer: "Card footer",
+  options: {
+    width: 200,
+    height: 200,
+  }
+}
+
   return (
     <SElement id="section-element">
       <div style={{width: '40%'}}>
-        <Map height="200px" center={{lat: 50.0755, lng: 14.4378}}>
+        <Map height="300px" center={{lat: 50.0755, lng: 14.4378}}>
           <KeyboardControl/>
           <ZoomControl/>
           <MouseControl zoom={true} pan={true} wheel={true}/>
           <CompassControl right={10} top={50}/>
           <MarkerLayer>
-            <Marker coords={{lat: 50.0755, lng: 14.4378}}/>
+            <Marker coords={{lat: 50.0755, lng: 14.4378}} card={markerCard} />
           </MarkerLayer>
         </Map>
         <SyntaxHighlighter

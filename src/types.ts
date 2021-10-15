@@ -56,3 +56,13 @@ export type Coordinates = {
   x: number;
   y: number;
 }
+
+export type MarkerCardConfiguration = {
+  header?: string;
+  body?: string;
+  footer?: string;
+  options?: {
+      width: number;
+      height: number;
+  }
+}
