@@ -6,5 +6,6 @@ export {default as BaseLayers} from './BaseLayers';
 export {default as Path} from './Path';
 export {default as PathLayer} from './PathLayer';
 export {default as PathMarker} from './PathMarker';
-export {default as Polygon, OUTLINE_STYLES} from './Polygon';
-export type { MapEvent, Coordinates, MarkerCardConfiguration } from './types';
+export {default as Polygon} from './Polygon';
+export type { MapEvent, Coordinates, MarkerCardConfiguration, GeometryOptions } from './types';
+export { LineStyle } from './types';
