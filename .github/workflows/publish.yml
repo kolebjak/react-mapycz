@@ -39,6 +39,7 @@ jobs:
           commit_user_name: Jakub Kolebaba
           commit_user_email: jakub@kolebaba.cz
           commit_author: Jakub Kolebaba <jakub@kolebaba.cz>
+          branch: ${{ github.head_ref }}
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
