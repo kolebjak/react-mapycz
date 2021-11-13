@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Prepare repository
+        run: git checkout "${GITHUB_REF:11}"
+      - run: git status
       - run: yarn
       - run: yarn build
       - name: bump version
