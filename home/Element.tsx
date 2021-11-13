@@ -62,17 +62,17 @@ const Element = () => {
         <p>
           <strong>Controls</strong>
           <ul>
-            <li>KeyboardControl</li>
-            <li>MouseControl</li>
-            <li>CompassControl</li>
+            <li><a href="https://github.com/flsy/react-mapycz#keyboard-control" target="_blank" title="Keyboard control readme">KeyboardControl</a></li>
+            <li><a href="https://github.com/flsy/react-mapycz#mouse-control" target="_blank" title="Mouse control readme">MouseControl</a></li>
+            <li><a href="https://github.com/flsy/react-mapycz#compass-control" target="_blank" title="Compass control readme">CompassControl</a></li>
             <li>ZoomControl</li>
           </ul>
         </p>
         <p>
           <strong>Marks</strong>
           <ul>
-            <li>Marker</li>
-            <li>Path</li>
+            <li><a href="https://github.com/flsy/react-mapycz#markers" target="_blank" title="Marker readme">Marker</a></li>
+            <li><a href="https://github.com/flsy/react-mapycz#path" target="_blank" title="Path readme">Path</a></li>
           </ul>
         </p>
       </div>
