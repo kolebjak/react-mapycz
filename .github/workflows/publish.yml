@@ -25,9 +25,10 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.event.release.head.ref }}
           node-version: 14
           registry-url: https://registry.npmjs.org/
+      - run: echo ${{ github.event.release }}
       - run: yarn
       - run: yarn build
       - name: Bump version
@@ -39,7 +40,6 @@ jobs:
           commit_user_name: Jakub Kolebaba
           commit_user_email: jakub@kolebaba.cz
           commit_author: Jakub Kolebaba <jakub@kolebaba.cz>
-          branch: ${{ github.head_ref }}
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
