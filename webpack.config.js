@@ -39,9 +39,12 @@ module.exports = {
         })
     ],
     devServer: {
-        contentBase: path.join(__dirname, 'home-static'),
-        compress: true,
+        static: path.join(__dirname, 'home-static'),
+        compress: false,
         port: 9000,
-        hot: true
+        hot: true,
+        client: {
+            overlay: { errors: true, warnings: false },
+        },
     }
 }
