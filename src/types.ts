@@ -49,7 +49,7 @@ export type MapEvent = {
   };
   target: any;
   timeStamp: number;
-  type: string; 
+  type: string;
 }
 
 export type Coordinates = {
@@ -57,10 +57,14 @@ export type Coordinates = {
   y: number;
 }
 
+export type MarkerCoords = { lng: number, lat: number }
+export type MarkerCardRender = ((coords: MarkerCoords) => JSX.Element);
+export const isMarkerCardRender = (p?: string | MarkerCardRender): p is MarkerCardRender => typeof p === 'function'
+
 export type MarkerCardConfiguration = {
-  header?: string;
-  body?: string;
-  footer?: string;
+  header?: string | MarkerCardRender;
+  body?: string | MarkerCardRender;
+  footer?: string | MarkerCardRender;
   options?: {
       width: number;
       height: number;
