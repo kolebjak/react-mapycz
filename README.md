@@ -13,8 +13,10 @@ Mapy.cz in React
 
 http://falsy.cz/react-mapycz/
 
-# Run Storybook
-`npm start start-storybook -p 9009`
+# Run preview
+- Install: `yarn`
+- Run preview: `yarn start`
+- Previre will be available on http://localhost:9000/
 
 # Usage 
 
@@ -44,6 +46,33 @@ const App = () => (
         </MarkerLayer>
     </Map>
 )
+```
+
+### Marker card
+
+You can display marker card on marker click. There are two approaches:
+
+**Pass card configuration**<br>
+Card configuration is object with `header`, `body`, `footer` and `option` properties.
+```typescript jsx
+<Marker 
+  coords={{lat: 50.0755, lng: 14.4378}} 
+  card={{
+    header: "<strong>Card header</strong>",
+    body: "<p>Card body</p><img src='https://via.placeholder.com/150x60/454545/eb4034'/>",
+    footer: "Card footer",
+    options: {
+      width: 200,
+      height: 200,
+    }
+  }} 
+/>
+```
+
+**Pass function**<br>
+Use you custom function to render JSX.Element inside marker card body.  
+```typescript jsx
+<Marker coords={{lat: 50.0755, lng: 14.4378}} card={({ lat, lng }) => <div>Custom render.</div>} />
 ```
 
 ## Path

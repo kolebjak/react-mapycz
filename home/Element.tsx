@@ -26,15 +26,15 @@ const Element = () => {
     </Map>
   `
 
-const markerCard = {
-  header: "<strong>Card header</strong>",
-  body: "<p>Card body</p><img src='https://via.placeholder.com/150x60/454545/eb4034'/>",
-  footer: "Card footer",
-  options: {
-    width: 200,
-    height: 200,
+  const markerCard = {
+    header: "<strong>Card header</strong>",
+    body: "<p>Card body</p><img src='https://via.placeholder.com/150x60/454545/eb4034'/>",
+    footer: "Card footer",
+    options: {
+      width: 200,
+      height: 200,
+    }
   }
-}
 
   return (
     <SElement id="section-element">
