@@ -12,23 +12,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14
-          registry-url: https://registry.npmjs.org/
       - run: yarn
       - run: yarn build
       - name: bump version
         run: |
           yarn version --no-git-tag-version --new-version ${{ github.event.release.tag_name }}
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: push new version
+        run: |
+          git config --global user.name 'Jakub Kolebaba'
+          git config --global user.email 'jakub@kolebaba.cz'
+          git commit -am ${{ github.event.release.tag_name }}
+          git push
+      - uses: actions/setup-node@v2
         with:
-          commit_message: "[Bot] Release version ${{ github.event.release.tag_name }}"
-          commit_user_name: Jakub Kolebaba
-          commit_user_email: jakub@kolebaba.cz
-          commit_author: Jakub Kolebaba <jakub@kolebaba.cz>
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
