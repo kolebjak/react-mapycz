@@ -23,9 +23,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
       - uses: actions/setup-node@v2
         with:
-          ref: master
           node-version: 14
           registry-url: https://registry.npmjs.org/
       - run: yarn
