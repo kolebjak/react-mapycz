@@ -25,6 +25,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
+          ref: $
           node-version: 14
           registry-url: https://registry.npmjs.org/
       - run: yarn
@@ -33,11 +34,11 @@ jobs:
         run: |
           yarn version --no-git-tag-version --new-version ${{ github.event.release.tag_name }}
       - uses: stefanzweifel/git-auto-commit-action@v4
-          with:
-            commit_message: "[Bot] Release version ${{ github.event.release.tag_name }}"
-            commit_user_name: Jakub Kolebaba
-            commit_user_email: jakub@kolebaba.cz
-            commit_author: Jakub Kolebaba <jakub@kolebaba.cz>
+        with:
+          commit_message: "[Bot] Release version ${{ github.event.release.tag_name }}"
+          commit_user_name: Jakub Kolebaba
+          commit_user_email: jakub@kolebaba.cz
+          commit_author: Jakub Kolebaba <jakub@kolebaba.cz>
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
