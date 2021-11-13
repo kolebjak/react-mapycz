@@ -6,6 +6,7 @@ import {githubGist} from "react-syntax-highlighter/dist/esm/styles/hljs";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import Section from "./components/Section";
 import ScrollDown from "./components/ScrollDown";
+import { MarkerProps } from '../src/Marker'
 
 const SElement = styled(Section)`
   display: flex;
@@ -26,9 +27,9 @@ const Element = () => {
     </Map>
   `
 
-  const markerCard = {
-    header: "<strong>Card header</strong>",
-    body: "<p>Card body</p><img src='https://via.placeholder.com/150x60/454545/eb4034'/>",
+  const markerCard: MarkerProps['card'] = {
+    header: ({ lat, lng }) => <strong>Card header {lat} {lng}</strong>,
+    body:  ({ lat, lng }) => <><p>Card body {lat} {lng}</p><img src='https://via.placeholder.com/150x60/454545/eb4034'/></>,
     footer: "Card footer",
     options: {
       width: 200,

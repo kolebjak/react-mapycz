@@ -52,8 +52,7 @@ const App = () => (
 
 You can display marker card on marker click. There are two approaches:
 
-**Pass card configuration**<br>
-Card configuration is object with `header`, `body`, `footer` and `option` properties.
+**Use string to render card items**<br>
 ```typescript jsx
 <Marker 
   coords={{lat: 50.0755, lng: 14.4378}} 
@@ -69,10 +68,20 @@ Card configuration is object with `header`, `body`, `footer` and `option` proper
 />
 ```
 
-**Pass function**<br>
-Use you custom function to render JSX.Element inside marker card body.  
+**Use your custom function to render card items.**<br>
 ```typescript jsx
-<Marker coords={{lat: 50.0755, lng: 14.4378}} card={({ lat, lng }) => <div>Custom render.</div>} />
+<Marker
+  coords={{lat: 50.0755, lng: 14.4378}}
+  card={{
+    header: ({ lat, lng }) => <strong>Card header {lat} {lng}</strong>,
+    body:  ({ lat, lng }) => <><p>Card body {lat} {lng}</p><img src='https://via.placeholder.com/150x60/454545/eb4034'/></>,
+    footer: "Card footer",
+    options: {
+      width: 200,
+      height: 200,
+    }
+  }}
+/>
 ```
 
 ## Path

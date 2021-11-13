@@ -1,27 +1,24 @@
 import {useContext, useEffect} from 'react';
 import {MarkerLayerContext} from "./MarkerLayer";
-import { MarkerCardConfiguration } from './types';
+import { isMarkerCardRender, MarkerCardConfiguration, MarkerCardRender } from './types'
 import { renderToStaticMarkup } from 'react-dom/server'
 
-type MarkerCoords = { lng: number, lat: number };
-type MarkerCardRender = (coords: MarkerCoords) => JSX.Element;
-
-interface MarkerProps {
-    coords: MarkerCoords
-    card?: MarkerCardConfiguration | MarkerCardRender;
+export interface MarkerProps {
+    coords: { lng: number, lat: number }
+    card?: MarkerCardConfiguration;
 }
 
-const isMarkerCardRender = (p: MarkerProps['card']): p is MarkerCardRender => typeof p === 'function'
-
 const Marker = (props: MarkerProps) => {
+    const renderCardPart = (content?: string | MarkerCardRender) => {
+        if(isMarkerCardRender(content)) {
+            return renderToStaticMarkup(content(props.coords))
+        }
+
+        return content;
+    }
 
     const renderCard = () => {
         const card = new window.SMap.Card();
-
-        if(isMarkerCardRender(props.card)) {
-            card.getBody().innerHTML = renderToStaticMarkup(props.card(props.coords));
-            return sMarker.decorate(window.SMap.Marker.Feature.Card, card);
-        }
 
         const cardWidth = props.card?.options?.width
         const cardHeight = props.card?.options?.height
@@ -29,9 +26,9 @@ const Marker = (props: MarkerProps) => {
             card.setSize(cardWidth, cardHeight);
         }
 
-        card.getHeader().innerHTML = props.card?.header;
-        card.getBody().innerHTML = props.card?.body;
-        card.getFooter().innerHTML = props.card?.footer;
+        card.getHeader().innerHTML = renderCardPart(props.card?.header);
+        card.getBody().innerHTML = renderCardPart(props.card?.body);
+        card.getFooter().innerHTML = renderCardPart(props.card?.footer);
         sMarker.decorate(window.SMap.Marker.Feature.Card, card);
     }
 
