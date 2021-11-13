@@ -12,24 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Prepare repository
-        run: git checkout master
-      - run: git status
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
       - run: yarn
       - run: yarn build
       - name: bump version
         run: |
           yarn version --no-git-tag-version --new-version ${{ github.event.release.tag_name }}
-      - name: push new version
-        run: |
-          git config --global user.name 'Jakub Kolebaba'
-          git config --global user.email 'jakub@kolebaba.cz'
-          git commit -am ${{ github.event.release.tag_name }}
-          git push
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14
-          registry-url: https://registry.npmjs.org/
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
