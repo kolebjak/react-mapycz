@@ -148,6 +148,20 @@ const App = () => (
 )
 ```
 
+### Sync control
+
+Synchronize map size by its parent element.
+```javascript
+import { Map, SyncControl } from 'react-mapycz'
+
+const App = () => (
+    <Map>
+        <SyncControl />
+    </Map>
+)
+```
+You can pass `options` prop to the `SyncControl` to set `bottomSpace` (in pixels) and `resizeTimeout` (in miliseconds).
+
 # License
 This library is using Mapy.cz API. By its usage you acknowledge that you agree to the [Terms and Conditions](http://api.mapy.cz/#pact). 
 
