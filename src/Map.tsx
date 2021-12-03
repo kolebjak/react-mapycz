@@ -2,7 +2,7 @@ import React, {createContext, useEffect, useRef, useState} from 'react';
 import BaseLayers from './BaseLayers';
 import SMapProvider from "./SMapProvider";
 import styled from 'styled-components'
-import { Coordinates, MapEvent } from './types';
+import {Coordinates, MapEvent} from './types';
 
 export const MapContext = createContext(null)
 
@@ -18,7 +18,8 @@ interface MapProps {
   baseLayers?: number[];
   children?: React.ReactNode;
   onEvent?: EventListener;
-  eventNameListener? : string
+  eventNameListener?: string;
+  animateCenterZoom?: boolean;
 }
 
 // Override PreflightCSS presets
@@ -37,12 +38,11 @@ const handleEventListener = (e: MapEvent, sMap: unknown, onEvent: EventListener)
 
 const Map = (props: MapProps) => {
   const mapNode = useRef(null);
-  const [map, setMap] = useState(null);
-  const {width, height, children, onEvent, eventNameListener = "*"} = props;
+  const [map, setMap] = useState<any>(null);
+  const {width, height, children, onEvent, eventNameListener = "*", zoom, center, animateCenterZoom} = props;
 
   useEffect(() => {
     if (!map && mapNode) {
-      const {zoom, center} = props;
       const centerCoords = window.SMap.Coords.fromWGS84(center.lng, center.lat);
       const sMap = new window.SMap(mapNode.current, centerCoords, zoom);
       const l = sMap.addDefaultLayer(BaseLayers.TURIST_NEW);
@@ -59,12 +59,19 @@ const Map = (props: MapProps) => {
     return
   }, []);
 
+  useEffect(() => {
+    if (map) {
+      const centerCoords = window.SMap.Coords.fromWGS84(center.lng, center.lat);
+      map.setCenterZoom(centerCoords, zoom, animateCenterZoom);
+    }
+  }, [center, zoom]);
+
   return (
-    <MapContext.Provider value={map}>
-      <StyledMap style={{ width, height }} ref={mapNode}>
-        {map && children}
-      </StyledMap>
-    </MapContext.Provider>
+      <MapContext.Provider value={map}>
+        <StyledMap style={{width, height}} ref={mapNode}>
+          {map && children}
+        </StyledMap>
+      </MapContext.Provider>
   );
 };
 
@@ -75,6 +82,7 @@ Map.defaultProps = {
   minZoom: 1,
   maxZoom: 21,
   baseLayers: [BaseLayers.TURIST_NEW],
+  animateCenterZoom: false,
 }
 
 export default SMapProvider(Map);
