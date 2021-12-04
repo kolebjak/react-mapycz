@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {CompassControl, KeyboardControl, MouseControl, ZoomControl} from "../src/controls";
+import {CompassControl, KeyboardControl, MouseControl, ZoomControl, SyncControl} from "../src/controls";
 import {Map, Marker, MarkerLayer} from "../src";
 import {githubGist} from "react-syntax-highlighter/dist/esm/styles/hljs";
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -20,6 +20,7 @@ const Element = () => {
       <ZoomControl/>
       <MouseControl zoom={true} pan={true} wheel={true}/>
       <CompassControl right={10} top={50}/>
+      <SyncControl />
       <MarkerLayer>
         <Marker coords={{lat: 50.0755, lng: 14.4378}} card={markerCard}/>
       </MarkerLayer>
@@ -44,6 +45,7 @@ const Element = () => {
           <ZoomControl/>
           <MouseControl zoom={true} pan={true} wheel={true}/>
           <CompassControl right={10} top={50}/>
+          <SyncControl />
           <MarkerLayer>
             <Marker coords={{lat: 50.0755, lng: 14.4378}} card={markerCard} />
           </MarkerLayer>
@@ -66,6 +68,7 @@ const Element = () => {
             <li><a href="https://github.com/flsy/react-mapycz#mouse-control" target="_blank" title="Mouse control readme">MouseControl</a></li>
             <li><a href="https://github.com/flsy/react-mapycz#compass-control" target="_blank" title="Compass control readme">CompassControl</a></li>
             <li>ZoomControl</li>
+            <li><a href="https://github.com/flsy/react-mapycz#sync-control" target="_blank" title="Sync control readme">SyncControl</a></li>
           </ul>
         </p>
         <p>
