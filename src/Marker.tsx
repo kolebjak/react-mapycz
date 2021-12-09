@@ -22,13 +22,19 @@ const Marker = (props: MarkerProps) => {
 
         const cardWidth = props.card?.options?.width
         const cardHeight = props.card?.options?.height
-        if(cardWidth && cardHeight) {
+        if (cardWidth && cardHeight) {
             card.setSize(cardWidth, cardHeight);
         }
 
-        card.getHeader().innerHTML = renderCardPart(props.card?.header);
-        card.getBody().innerHTML = renderCardPart(props.card?.body);
-        card.getFooter().innerHTML = renderCardPart(props.card?.footer);
+        if (props.card?.header) {
+            card.getHeader().innerHTML = renderCardPart(props.card?.header);
+        }
+        if (props.card?.body) {
+            card.getBody().innerHTML = renderCardPart(props.card?.body);
+        }
+        if (props.card?.footer) {
+            card.getFooter().innerHTML = renderCardPart(props.card?.footer);
+        }
         sMarker.decorate(window.SMap.Marker.Feature.Card, card);
     }
 
