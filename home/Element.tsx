@@ -60,8 +60,8 @@ const Element = () => {
       </div>
       <div style={{width: '50%'}}>
         <h2>Elements</h2>
-        <p>Various elements is ready to use. It's up to you how you combine it.</p>
-        <p>
+        <p>Various elements are ready to use. It's up to you how you combine them.</p>
+        <div>
           <strong>Controls</strong>
           <ul>
             <li><a href="https://github.com/flsy/react-mapycz#keyboard-control" target="_blank" title="Keyboard control readme">KeyboardControl</a></li>
@@ -70,14 +70,14 @@ const Element = () => {
             <li>ZoomControl</li>
             <li><a href="https://github.com/flsy/react-mapycz#sync-control" target="_blank" title="Sync control readme">SyncControl</a></li>
           </ul>
-        </p>
-        <p>
+        </div>
+        <div>
           <strong>Marks</strong>
           <ul>
             <li><a href="https://github.com/flsy/react-mapycz#markers" target="_blank" title="Marker readme">Marker</a></li>
             <li><a href="https://github.com/flsy/react-mapycz#path" target="_blank" title="Path readme">Path</a></li>
           </ul>
-        </p>
+        </div>
       </div>
       <ScrollDown href="#section-dynamic" />
     </SElement>
