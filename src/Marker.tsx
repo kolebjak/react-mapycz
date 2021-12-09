@@ -30,12 +30,12 @@ const Marker = (props: MarkerProps) => {
         };
     };
 
-    const renderCardPart = (content?: string | MarkerCardRender) => {
-        if (isMarkerCardRender(content)) {
-            return renderToStaticMarkup(content(props.coords));
+    const renderCardPart = (container: any, content?: string | MarkerCardRender) => {
+        if (content) {
+            container.innerHTML = isMarkerCardRender(content)
+                ? renderToStaticMarkup(content(props.coords))
+                : content;
         }
-
-        return content;
     };
 
     const renderCard = () => {
@@ -47,15 +47,9 @@ const Marker = (props: MarkerProps) => {
             card.setSize(cardWidth, cardHeight);
         }
 
-        if (props.card?.header) {
-            card.getHeader().innerHTML = renderCardPart(props.card?.header);
-        }
-        if (props.card?.body) {
-            card.getBody().innerHTML = renderCardPart(props.card?.body);
-        }
-        if (props.card?.footer) {
-            card.getFooter().innerHTML = renderCardPart(props.card?.footer);
-        }
+        renderCardPart(card.getHeader(), props.card?.header);
+        renderCardPart(card.getBody(), props.card?.body);
+        renderCardPart(card.getFooter(), props.card?.footer);
 
         sMarker.decorate(window.SMap.Marker.Feature.Card, card);
     };
