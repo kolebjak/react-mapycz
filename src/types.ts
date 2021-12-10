@@ -90,3 +90,8 @@ export type GeometryOptions = {
   outlineWidth?: number;
   outlineStyle?: LineStyle;
 }
+
+export type ClusterConfig = {
+  maxDistance?: number;
+  clusterCtor?: Function;
+};
