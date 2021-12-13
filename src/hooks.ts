@@ -1,13 +1,17 @@
 import {useEffect} from 'react';
+import {LoaderApiConfig} from "./types";
 
-export const useSMap = (cb:any) => {
+export const useSMap = (
+    cb: any,
+    loaderApiConfig?: LoaderApiConfig | null,
+) => {
     useEffect(() => {
 
         const onload = () => {
             // @ts-ignore
             window.Loader.async = true;
             // @ts-ignore
-            window.Loader.load(null, null, cb);
+            window.Loader.load(null, loaderApiConfig, cb);
         }
 
         const script = document.createElement('script');
