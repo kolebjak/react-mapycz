@@ -71,6 +71,30 @@ export type MarkerCardConfiguration = {
   }
 }
 
+export interface MarkerProps {
+  coords: MarkerCoords;
+  id?: string;
+  options?: MarkerOptions;
+  card?: MarkerCardConfiguration;
+}
+
+export type MarkerAnchor =
+    | { top: number; left: number }
+    | { top: number; right: number }
+    | { bottom: number; right: number }
+    | { bottom: number; left: number };
+
+export type MarkerRender = (marker: MarkerProps) => JSX.Element;
+export const isMarkerRender = (
+    url?: string | Element | MarkerRender
+): url is MarkerRender => typeof url === 'function';
+
+export type MarkerOptions = {
+  title?: string;
+  anchor?: MarkerAnchor;
+  url?: string | Element | MarkerRender;
+};
+
 export enum LineStyle {
   solid = 0,
   dash = 1,

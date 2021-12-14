@@ -43,7 +43,7 @@ const Polygons = () => {
   }
 
   return (
-    <SPolygons id="polygons">
+    <SPolygons id="section-polygons">
       <div style={{width: '40%'}}>
         <Map height="300px" center={{lat: 49.7040667, lng: 13.8301333}} zoom={10} onEvent={onPolygonClicked} eventNameListener="geometry-click">
           <MouseControl zoom={true} pan={true} wheel={true}/>
