@@ -8,11 +8,12 @@ interface MarkerLayerProps {
     children: ReactNode;
     enableClustering?: boolean;
     clusterConfig?: ClusterConfig;
+    id?: string | null;
 }
 
-const MarkerLayer = ({children, enableClustering, clusterConfig}: MarkerLayerProps) => {
+const MarkerLayer = ({children, enableClustering, clusterConfig, id}: MarkerLayerProps) => {
     const map = useContext<any>(MapContext)
-    const markerLayer = new window.SMap.Layer.Marker();
+    const markerLayer = new window.SMap.Layer.Marker(id);
 
     if (enableClustering) {
         const clusterer = new window.SMap.Marker.Clusterer(

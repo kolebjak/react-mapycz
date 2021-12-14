@@ -95,3 +95,17 @@ export type ClusterConfig = {
   maxDistance?: number;
   clusterCtor?: Function;
 };
+
+export interface LoaderApiConfig {
+  jak?: boolean;
+  poi?: boolean;
+  pano?: boolean;
+  suggest?: boolean;
+  api?: "full" | "simple";
+}
+
+export interface MarkerLayerOptions {
+  prefetch?: number;
+  supportsAnimation?: boolean;
+  poiTooltip?: boolean;
+}
