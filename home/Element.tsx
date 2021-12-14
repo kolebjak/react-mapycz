@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import {CompassControl, KeyboardControl, MouseControl, ZoomControl, SyncControl} from "../src/controls";
+import {CompassControl, KeyboardControl, MouseControl, SyncControl, ZoomControl} from "../src/controls";
 import {Map, Marker, MarkerLayer} from "../src";
 import {githubGist} from "react-syntax-highlighter/dist/esm/styles/hljs";
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -76,6 +76,7 @@ const Element = () => {
           <ul>
             <li><a href="https://github.com/flsy/react-mapycz#markers" target="_blank" title="Marker readme">Marker</a></li>
             <li><a href="https://github.com/flsy/react-mapycz#path" target="_blank" title="Path readme">Path</a></li>
+            <li><a href="https://github.com/flsy/react-mapycz#poi-layer" target="_blank" title="POI readme">POI</a></li>
           </ul>
         </div>
       </div>

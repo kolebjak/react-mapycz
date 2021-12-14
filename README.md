@@ -162,6 +162,20 @@ const App = () => (
 ```
 You can pass `options` prop to the `SyncControl` to set `bottomSpace` (in pixels) and `resizeTimeout` (in miliseconds).
 
+
+## POI layer
+
+The map can automatically fetch nearby points of interest.
+
+```javascript
+import { Map, POILayer } from 'react-mapycz'
+
+const App = () => (
+    <Map loaderApiConfig={{poi: true}}>
+        <POILayer />
+    </Map>
+)
+
 # License
 This library is using Mapy.cz API. By its usage you acknowledge that you agree to the [Terms and Conditions](http://api.mapy.cz/#pact). 
 
