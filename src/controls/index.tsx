@@ -1,5 +1,5 @@
-export {default as ZoomControl} from './ZoomControl';
-export {default as CompassControl} from './CompassControl';
-export {default as MouseControl} from './MouseControl';
-export {default as KeyboardControl} from './KeyboardControl';
-export {default as SyncControl} from './SyncControl';
+export {default as ZoomControl, ZoomControlProps} from './ZoomControl';
+export {default as CompassControl, CompassControlProps} from './CompassControl';
+export {default as MouseControl, MouseControlProps} from './MouseControl';
+export {default as KeyboardControl, KeyboardControlProps} from './KeyboardControl';
+export {default as SyncControl, SyncControlProps, SyncControlOptions} from './SyncControl';

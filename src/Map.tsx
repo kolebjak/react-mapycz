@@ -6,9 +6,9 @@ import {Coordinates, MapEvent} from './types';
 
 export const MapContext = createContext(null)
 
-type EventListener = (e: MapEvent, coordinates: Coordinates) => void
+export type MapEventListener = (e: MapEvent, coordinates: Coordinates) => void
 
-interface MapProps {
+export interface MapProps {
   center: { lat: number, lng: number };
   width?: string;
   height?: string;
@@ -17,7 +17,7 @@ interface MapProps {
   maxZoom?: number;
   baseLayers?: number[];
   children?: React.ReactNode;
-  onEvent?: EventListener;
+  onEvent?: MapEventListener;
   eventNameListener?: string;
   animateCenterZoom?: boolean;
 }
@@ -29,7 +29,7 @@ const StyledMap = styled.div`
   }
 `
 
-const handleEventListener = (e: MapEvent, sMap: unknown, onEvent: EventListener) => {
+const handleEventListener = (e: MapEvent, sMap: unknown, onEvent: MapEventListener) => {
   const coordinates = (e?.data?.event) 
     ? window.SMap.Coords.fromEvent(e.data.event, sMap) 
     : null;

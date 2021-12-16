@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import {MapContext} from "../Map";
 
-interface KeyboardControlProps {
+export interface KeyboardControlProps {
     pan?: boolean;
     zoom?: boolean;
 }

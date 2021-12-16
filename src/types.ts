@@ -1,3 +1,21 @@
+export type MapEventType =
+  | 'map-redraw'
+  | 'map-lock'
+  | 'map-unlock'
+  | 'map-click'
+  | 'map-contextmenu'
+  | 'map-focus'
+  | 'map-blur '
+  | 'zoom-start'
+  | 'zoom-range-change '
+  | 'zoom-step'
+  | 'zoom-stop '
+  | 'rotation-start '
+  | 'rotation-step'
+  | 'rotation-stop'
+  | 'map-pan '
+  | 'port-sync';
+
 export type MapEvent = {
   data: {
     event: {
@@ -49,7 +67,7 @@ export type MapEvent = {
   };
   target: any;
   timeStamp: number;
-  type: string;
+  type: MapEventType;
 }
 
 export type Coordinates = {
@@ -66,8 +84,8 @@ export type MarkerCardConfiguration = {
   body?: string | MarkerCardRender;
   footer?: string | MarkerCardRender;
   options?: {
-      width: number;
-      height: number;
+    width: number;
+    height: number;
   }
 }
 
@@ -78,22 +96,28 @@ export interface MarkerProps {
   card?: MarkerCardConfiguration;
 }
 
+export type MarkerRender = (marker: MarkerProps) => JSX.Element;
+export const isMarkerRender = (
+    url?: string | Element | MarkerRender
+): url is MarkerRender => typeof url === 'function';
+
 export type MarkerAnchor =
     | { top: number; left: number }
     | { top: number; right: number }
     | { bottom: number; right: number }
     | { bottom: number; left: number };
 
-export type MarkerRender = (marker: MarkerProps) => JSX.Element;
-export const isMarkerRender = (
-    url?: string | Element | MarkerRender
-): url is MarkerRender => typeof url === 'function';
-
 export type MarkerOptions = {
   title?: string;
   anchor?: MarkerAnchor;
   url?: string | Element | MarkerRender;
 };
+
+export interface MarkerLayerOptions {
+  prefetch?: number;
+  supportsAnimation?: boolean;
+  poiTooltip?: boolean;
+}
 
 export enum LineStyle {
   solid = 0,
@@ -126,10 +150,4 @@ export interface LoaderApiConfig {
   pano?: boolean;
   suggest?: boolean;
   api?: "full" | "simple";
-}
-
-export interface MarkerLayerOptions {
-  prefetch?: number;
-  supportsAnimation?: boolean;
-  poiTooltip?: boolean;
 }
