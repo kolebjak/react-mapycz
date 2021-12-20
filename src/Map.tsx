@@ -62,9 +62,9 @@ const Map = (props: MapProps) => {
   useEffect(() => {
     if (map) {
       const centerCoords = window.SMap.Coords.fromWGS84(center.lng, center.lat);
-      map.setCenterZoom(centerCoords, zoom, animateCenterZoom);
+      map.setCenter(centerCoords, animateCenterZoom);
     }
-  }, [center, zoom]);
+  }, [center]);
 
   return (
       <MapContext.Provider value={map}>
