@@ -1,18 +1,19 @@
 import {useContext} from 'react';
 import {PathLayerContext} from "./PathLayer";
-import { GeometryOptions } from './types';
+import {GeometryOptions} from './types';
 
 interface Results {
   [key:string]: any;
 }
-interface PathProps {
+
+export interface PathProps {
   /**
    * @deprecated use options.color
-   */ 
+   */
   color?: string;
   /**
    * @deprecated use options.width
-   */ 
+   */
   width?: number;
   coords: Array<{ lng: number, lat: number }>
   criterion?: 'fast' | 'short' | 'bike1' | 'bike2' | 'bike3' | 'turist1' | 'turist2'

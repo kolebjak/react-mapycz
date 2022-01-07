@@ -1,7 +1,7 @@
 import {useContext, useEffect} from 'react';
 import {MapContext} from "../Map";
 
-interface CompassControlProps {
+export interface CompassControlProps {
     left?: number;
     top?: number;
     right?: number;

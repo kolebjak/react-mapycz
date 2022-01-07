@@ -3,7 +3,7 @@ import {MapContext} from "./Map";
 import BaseLayers from "./BaseLayers";
 import {MarkerLayerOptions} from "./types";
 
-interface POILayerProps {
+export interface POILayerProps {
     id?: string | null;
     options?: MarkerLayerOptions;
 }

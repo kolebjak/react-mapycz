@@ -1,11 +1,12 @@
 import React from "react";
 import Marker from "./Marker";
+import {MarkerCoords} from "./types";
 
-type Props = {
-  coords: Array<{ lng: number; lat: number }>;
+export type PathMarkerProps = {
+  coords: MarkerCoords[];
 };
 
-const PathMarker = ({ coords }: Props) => (
+const PathMarker = ({ coords }: PathMarkerProps) => (
   <>
     {coords.map(coords => (
       <Marker coords={coords} />
