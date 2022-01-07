@@ -9,7 +9,7 @@ export const MapContext = createContext(null)
 export type MapEventListener = (e: MapEvent, coordinates: Coordinates) => void
 
 export interface MapProps {
-  center: { lat: number, lng: number };
+  center?: { lat: number, lng: number };
   width?: string;
   height?: string;
   zoom?: number;
@@ -31,8 +31,8 @@ const StyledMap = styled.div`
 `
 
 const handleEventListener = (e: MapEvent, sMap: unknown, onEvent: MapEventListener) => {
-  const coordinates = (e?.data?.event) 
-    ? window.SMap.Coords.fromEvent(e.data.event, sMap) 
+  const coordinates = (e?.data?.event)
+    ? window.SMap.Coords.fromEvent(e.data.event, sMap)
     : null;
   onEvent(e, coordinates)
 }
@@ -44,7 +44,7 @@ const Map = (props: MapProps) => {
 
   useEffect(() => {
     if (!map && mapNode) {
-      const centerCoords = window.SMap.Coords.fromWGS84(center.lng, center.lat);
+      const centerCoords = center ? window.SMap.Coords.fromWGS84(center.lng, center.lat) : undefined;
       const sMap = new window.SMap(mapNode.current, centerCoords, zoom);
       const l = sMap.addDefaultLayer(BaseLayers.TURIST_NEW);
       l.enable();
@@ -61,7 +61,7 @@ const Map = (props: MapProps) => {
   }, []);
 
   useEffect(() => {
-    if (map) {
+    if (map && center) {
       const centerCoords = window.SMap.Coords.fromWGS84(center.lng, center.lat);
       map.setCenter(centerCoords, animateCenterZoom);
     }
