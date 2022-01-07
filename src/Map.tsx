@@ -1,8 +1,8 @@
-import React, {createContext, useEffect, useRef, useState} from 'react';
+import React, {createContext, useEffect, useImperativeHandle, useRef, useState} from 'react';
 import BaseLayers from './BaseLayers';
 import SMapProvider from "./SMapProvider";
 import styled from 'styled-components'
-import {Coordinates, MapEvent} from './types';
+import {Coordinates, MapEvent, SMap} from './types';
 
 export const MapContext = createContext(null)
 
@@ -20,6 +20,7 @@ export interface MapProps {
   onEvent?: MapEventListener;
   eventNameListener?: string;
   animateCenterZoom?: boolean;
+  mapRef?: React.RefObject<SMap>;
 }
 
 // Override PreflightCSS presets
@@ -62,9 +63,11 @@ const Map = (props: MapProps) => {
   useEffect(() => {
     if (map) {
       const centerCoords = window.SMap.Coords.fromWGS84(center.lng, center.lat);
-      map.setCenterZoom(centerCoords, zoom, animateCenterZoom);
+      map.setCenter(centerCoords, animateCenterZoom);
     }
-  }, [center, zoom]);
+  }, [center]);
+
+  useImperativeHandle(props.mapRef, () => map);
 
   return (
       <MapContext.Provider value={map}>

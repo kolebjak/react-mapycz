@@ -75,6 +75,73 @@ export type Coordinates = {
   y: number;
 }
 
+export type SMapPixel = {
+  x: number;
+  y: number;
+}
+
+export type CardPadding = 'top' | 'right' | 'bottom' | 'left';
+
+/**
+ * @desc left bottom and right top in WGS84
+ */
+export type SMapViewport = {
+  lbx: number;
+  lby: number;
+  rtx: number;
+  rty: number;
+};
+
+export type SMap = {
+  lock(): void;
+  unlock(): void;
+  getSignals(): any;
+  getZoomRange(): [number, number];
+  setZoomRange(minZoom: number, maxZoom: number): void;
+  redraw(): void;
+  getOrientation(): number;
+  setOrientation(o: number, animate?: boolean): void;
+  setProjection(projection: any): void;
+  getContainer(): HTMLDivElement;
+  getContent(): HTMLDivElement;
+  getSize(): SMapPixel;
+  getProjection(): any;
+  getOffset(): SMapPixel;
+  getGeometryCanvas(): any;
+  setCursor(cursor: string | null, x?: number, y?: number): void;
+  setCenter(center: Coordinates | SMapPixel, animate?: boolean): void;
+  zoomChange(z: number | string): boolean;
+  setZoom(z: number | string, fixedPoint?: Coordinates | SMapPixel, animate?: boolean): void;
+  setCenterZoom(center: Coordinates, zoom: number | string, animate?: boolean): void;
+  getCenter(): Coordinates;
+  getZoom(): number;
+  computeCenterZoom(arr: Coordinates[], usePadding?: boolean): [Coordinates, number];
+  addLayer(l: any, before?: boolean): any;
+  removeLayer(l: any): void;
+  getLayer(id: string | number): any;
+  getLayerContainer(): any;
+  addControl(c: any): void;
+  getControls(): any[];
+  removeControl(c: any): void;
+  addCard(card: any, coords: Coordinates, noPan: boolean): void;
+  removeCard(): void;
+  getCard(): any;
+  syncPort(): void;
+  setPadding(which: CardPadding, value: number): void;
+  getPadding(which: CardPadding): number;
+  getMap(): SMap;
+  addDefaultLayer(id: string | number): any;
+  addDefaultContextMenu(): void;
+  addDefaultControls(): void;
+  /**
+   * @desc replaces placeholders {placeholder} with current values
+   * placeholders: cx, cy, lbx, lby, rtx, rty, lx, rx, by, ty, zoom, zoom[+-][12], orientation
+   */
+  formatString(template: string, customValues?: Record<string, string | number>): string;
+  getCopyrightControl(): any;
+  getViewport(): SMapViewport;
+};
+
 export type MarkerCoords = { lng: number, lat: number }
 export type MarkerCardRender = ((coords: MarkerCoords) => JSX.Element);
 export const isMarkerCardRender = (p?: string | MarkerCardRender): p is MarkerCardRender => typeof p === 'function'
