@@ -7,8 +7,6 @@ import Section from "./components/Section";
 import GitHubButton from 'react-github-btn';
 import ScrollDown from "./components/ScrollDown";
 
-// center={{ lat: 50.0755, lng: 14.4378 }}
-
 const code = `
   <Map height="200px" />
 `
