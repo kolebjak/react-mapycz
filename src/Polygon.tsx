@@ -1,11 +1,11 @@
 import {useContext} from 'react';
 import {PathLayerContext} from "./PathLayer";
-import { GeometryOptions } from './types';
+import {GeometryOptions, MarkerCoords} from './types';
 
-interface PolygonProps {
-  coords: Array<{ lng: number, lat: number }>
-  options?: GeometryOptions;
+export interface PolygonProps {
+  coords: MarkerCoords[];
   id?: string;
+  options?: GeometryOptions;
 }
 
 const Polygon = ({ coords, options, id }: PolygonProps) => {

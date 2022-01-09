@@ -8,7 +8,7 @@ import GitHubButton from 'react-github-btn';
 import ScrollDown from "./components/ScrollDown";
 
 const code = `
-  <Map height="200px" center={{lat: 50.0755, lng: 14.4378}} />
+  <Map height="200px" />
 `
 
 const SHome = styled(Section)`
@@ -17,6 +17,10 @@ const SHome = styled(Section)`
   align-items: center;
 `;
 
+const SGettingStarted = styled.div`
+  margin-top: 1em;
+`
+
 const Home = () => {
   return (
     <SHome>
@@ -24,9 +28,20 @@ const Home = () => {
         <h1>react-mapycz</h1>
         <p>Easy-to-use integration of Mapy.cz into React using Mapy.cz API.</p>
         <GitHubButton href="https://github.com/flsy/react-mapycz" data-icon="octicon-star" data-size="large" data-show-count={true} aria-label="Star flsy/react-mapycz on GitHub">Star</GitHubButton>
+        <SGettingStarted>
+          <strong>Getting started</strong>
+          <p>Install library and peer dependencies</p>
+          <SyntaxHighlighter language="bash" style={githubGist}>
+            npm i react-mapycz react-dom@16.13.1 react@16.13.1
+          </SyntaxHighlighter>
+          <p>or</p>
+          <SyntaxHighlighter language="bash" style={githubGist}>
+            yarn add react-mapycz react-dom@16.13.1 react@16.13.1
+          </SyntaxHighlighter>
+        </SGettingStarted>
       </div>
       <div style={{ width: '40%' }}>
-        <Map height="200px" center={{lat: 50.0755, lng: 14.4378}} />
+        <Map height="200px" />
         <SyntaxHighlighter
           language="jsx"
           wrapLongLines={true}
@@ -35,7 +50,7 @@ const Home = () => {
           {code}
         </SyntaxHighlighter>
       </div>
-      <ScrollDown href="#section-element" />
+      <ScrollDown href="#section-map" />
     </SHome>
   )
 }

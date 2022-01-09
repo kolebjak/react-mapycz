@@ -5,6 +5,7 @@ import DynamicRoute from "./DynamicRoute";
 import Polygons from "./Polygons";
 import Element from "./Element";
 import RouteInfo from './RouteInfo'
+import MapElement from './MapElement'
 
 declare global {
   interface Window {
@@ -17,6 +18,7 @@ const App = () => {
     <>
       <GlobalStyle />
       <Home />
+      <MapElement />
       <Element />
       <DynamicRoute />
       <Polygons />

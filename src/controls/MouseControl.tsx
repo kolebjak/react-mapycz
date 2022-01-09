@@ -1,7 +1,7 @@
 import {useContext, useEffect, useRef} from 'react';
 import {MapContext} from '../Map';
 
-interface MouseControlProps {
+export interface MouseControlProps {
   pan?: boolean;
   wheel?: boolean;
   zoom?: boolean;

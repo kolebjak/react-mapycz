@@ -1,7 +1,7 @@
 import {useContext} from 'react';
 import {MapContext} from "../Map";
 
-interface ZoomControlProps {
+export interface ZoomControlProps {
   showZoomMenu?: boolean;
   labels?: object;
   left?: number;

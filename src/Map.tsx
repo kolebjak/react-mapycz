@@ -6,10 +6,10 @@ import {Coordinates, MapEvent, SMap} from './types';
 
 export const MapContext = createContext(null)
 
-type EventListener = (e: MapEvent, coordinates: Coordinates) => void
+export type MapEventListener = (e: MapEvent, coordinates: Coordinates) => void
 
-interface MapProps {
-  center: { lat: number, lng: number };
+export interface MapProps {
+  center?: { lat: number, lng: number };
   width?: string;
   height?: string;
   zoom?: number;
@@ -17,7 +17,7 @@ interface MapProps {
   maxZoom?: number;
   baseLayers?: number[];
   children?: React.ReactNode;
-  onEvent?: EventListener;
+  onEvent?: MapEventListener;
   eventNameListener?: string;
   animateCenterZoom?: boolean;
   mapRef?: React.RefObject<SMap>;
@@ -30,9 +30,9 @@ const StyledMap = styled.div`
   }
 `
 
-const handleEventListener = (e: MapEvent, sMap: unknown, onEvent: EventListener) => {
-  const coordinates = (e?.data?.event) 
-    ? window.SMap.Coords.fromEvent(e.data.event, sMap) 
+const handleEventListener = (e: MapEvent, sMap: unknown, onEvent: MapEventListener) => {
+  const coordinates = (e?.data?.event)
+    ? window.SMap.Coords.fromEvent(e.data.event, sMap)
     : null;
   onEvent(e, coordinates)
 }
@@ -44,7 +44,7 @@ const Map = (props: MapProps) => {
 
   useEffect(() => {
     if (!map && mapNode) {
-      const centerCoords = window.SMap.Coords.fromWGS84(center.lng, center.lat);
+      const centerCoords = center ? window.SMap.Coords.fromWGS84(center.lng, center.lat) : undefined;
       const sMap = new window.SMap(mapNode.current, centerCoords, zoom);
       const l = sMap.addDefaultLayer(BaseLayers.TURIST_NEW);
       l.enable();
@@ -61,7 +61,7 @@ const Map = (props: MapProps) => {
   }, []);
 
   useEffect(() => {
-    if (map) {
+    if (map && center) {
       const centerCoords = window.SMap.Coords.fromWGS84(center.lng, center.lat);
       map.setCenter(centerCoords, animateCenterZoom);
     }

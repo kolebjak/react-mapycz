@@ -1,12 +1,12 @@
 import {useContext, useEffect} from 'react';
 import {MapContext} from "../Map";
 
-interface SyncControlOptions {
+export interface SyncControlOptions {
     bottomSpace?: number;
     resizeTimeout?: number;
 }
 
-interface SyncControlProps {
+export interface SyncControlProps {
     options?: SyncControlOptions;
 }
 

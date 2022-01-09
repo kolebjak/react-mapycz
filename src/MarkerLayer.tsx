@@ -4,7 +4,7 @@ import {ClusterConfig} from './types';
 
 export const MarkerLayerContext = createContext(null)
 
-interface MarkerLayerProps {
+export interface MarkerLayerProps {
     children: ReactNode;
     enableClustering?: boolean;
     clusterConfig?: ClusterConfig;
