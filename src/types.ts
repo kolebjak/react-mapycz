@@ -1,20 +1,53 @@
+type MapSignal =
+    | 'map-redraw'
+    | 'map-lock'
+    | 'map-unlock'
+    | 'map-click'
+    | 'map-contextmenu'
+    | 'map-focus'
+    | 'map-blur'
+    | 'zoom-start'
+    | 'zoom-range-change'
+    | 'zoom-step'
+    | 'zoom-stop'
+    | 'rotation-start'
+    | 'rotation-step'
+    | 'rotation-stop'
+    | 'map-pan'
+    | 'center-start'
+    | 'center-stop'
+    | 'port-sync';
+type MapLayerSignal =
+    | 'layer-enable'
+    | 'layer-disable'
+    | 'tileset-load';
+type MapKeyboardSignal = 'control-keyboard-move' | 'control-keyboard-zoom';
+type MapControlLayerSignal = 'control-layer-click';
+type MapControlMouseSignal = 'control-mouse-move' | 'control-mouse-zoom';
+type MapControlPointerSignal = 'pointer-click';
+type MapControlSelectionSignal = 'control-selection-centerzoom';
+type MapControlSyncSignal = 'map-resize';
+type MapControlZoomSignal = 'zoom-start' | 'zoom-step' | 'zoom-stop' | 'control-zoom-zoom';
+type MapMarkerSignal = 'marker-click';
+type MapMarkerFeatureDraggableSignal = 'marker-drag-start' | 'marker-drag-move' | 'marker-drag-stop';
+type MapMarkerPOISignal = 'marker-poi-click' | 'marker-poi-enter' | 'marker-poi-leave';
+type MapGeometrySignal = 'geometry-click';
+type MapCardSignal = 'card-open' | 'card-close' | 'card-close-click';
 export type MapEventType =
-  | 'map-redraw'
-  | 'map-lock'
-  | 'map-unlock'
-  | 'map-click'
-  | 'map-contextmenu'
-  | 'map-focus'
-  | 'map-blur '
-  | 'zoom-start'
-  | 'zoom-range-change '
-  | 'zoom-step'
-  | 'zoom-stop '
-  | 'rotation-start '
-  | 'rotation-step'
-  | 'rotation-stop'
-  | 'map-pan '
-  | 'port-sync';
+    | MapSignal
+    | MapLayerSignal
+    | MapKeyboardSignal
+    | MapControlLayerSignal
+    | MapControlMouseSignal
+    | MapControlPointerSignal
+    | MapControlSelectionSignal
+    | MapControlSyncSignal
+    | MapControlZoomSignal
+    | MapMarkerSignal
+    | MapMarkerFeatureDraggableSignal
+    | MapMarkerPOISignal
+    | MapGeometrySignal
+    | MapCardSignal;
 
 export type MapEvent = {
   data: {
