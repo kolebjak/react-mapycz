@@ -41,6 +41,7 @@ module.exports = {
         port: 9000,
         hot: true,
         client: {
+            progress: true,
             overlay: { errors: true, warnings: false },
         },
     }
