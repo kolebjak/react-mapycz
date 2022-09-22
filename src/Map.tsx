@@ -15,7 +15,7 @@ export interface MapProps {
   zoom?: number;
   minZoom?: number;
   maxZoom?: number;
-  baseLayers?: number[];
+  baseLayer?: BaseLayers;
   children?: React.ReactNode;
   onEvent?: MapEventListener;
   eventNameListener?: string;
@@ -46,8 +46,9 @@ const Map = (props: MapProps) => {
     if (!map && mapNode) {
       const centerCoords = center ? window.SMap.Coords.fromWGS84(center.lng, center.lat) : undefined;
       const sMap = new window.SMap(mapNode.current, centerCoords, zoom);
-      const l = sMap.addDefaultLayer(BaseLayers.TURIST_NEW);
+      const l = sMap.addDefaultLayer(props.baseLayer ?? BaseLayers.TURIST_NEW);
       l.enable();
+
       setMap(sMap);
       if (onEvent) {
         const signals = sMap.getSignals();
@@ -84,7 +85,6 @@ Map.defaultProps = {
   zoom: 13,
   minZoom: 1,
   maxZoom: 21,
-  baseLayers: [BaseLayers.TURIST_NEW],
   animateCenterZoom: false,
 }
 
