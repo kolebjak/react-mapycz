@@ -1,4 +1,3 @@
-const webpack = require("webpack");
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -30,9 +29,6 @@ module.exports = {
         path: path.resolve(__dirname, 'home-static')
     },
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('development')
-        }),
         new HtmlWebpackPlugin({
             favicon: "./home/assets/favicon.ico",
             template: path.join(__dirname, 'home', 'index.html')
