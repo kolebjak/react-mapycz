@@ -54,21 +54,22 @@ const Marker = (props: MarkerProps) => {
         sMarker.decorate(window.SMap.Marker.Feature.Card, card);
     };
 
-    const {lng, lat} = props.coords;
+    const { lng, lat } = props.coords;
     const coords = window.SMap.Coords.fromWGS84(lng, lat);
     const options = resolveOptions();
     const sMarker = new window.SMap.Marker(coords, props.id, options);
-    markerLayer?.addMarker(sMarker);
-
-    if (props.card) {
-        renderCard();
-    }
 
     useEffect(() => {
+        markerLayer?.addMarker(sMarker);
+
+        if (props.card) {
+            renderCard();
+        }
+
         return () => {
             markerLayer.removeMarker(sMarker, true);
         };
-    });
+    }, []);
 
     return null;
 };
