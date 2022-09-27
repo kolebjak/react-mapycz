@@ -1,8 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
-    mode: 'production',
     entry: {
         app: path.join(__dirname, 'home', 'index.tsx')
     },
@@ -29,6 +29,7 @@ module.exports = {
         path: path.resolve(__dirname, 'home-static')
     },
     plugins: [
+        new ForkTsCheckerWebpackPlugin(),
         new HtmlWebpackPlugin({
             favicon: "./home/assets/favicon.ico",
             template: path.join(__dirname, 'home', 'index.html')
