@@ -69,7 +69,7 @@ const Marker = (props: MarkerProps) => {
         return () => {
             markerLayer.removeMarker(sMarker, true);
         };
-    }, []);
+    }, [markerLayer, props.card, sMarker]);
 
     return null;
 };
