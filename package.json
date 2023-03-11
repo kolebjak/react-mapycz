@@ -14,7 +14,8 @@
     "deploy": "NODE_DEBUG=gh-pages gh-pages -d home-static"
   },
   "files": [
-    "lib"
+    "lib",
+    "src"
   ],
   "keywords": [
     "react",
