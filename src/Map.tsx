@@ -65,8 +65,9 @@ const Map = (props: MapProps) => {
     if (map && center) {
       const centerCoords = window.SMap.Coords.fromWGS84(center.lng, center.lat);
       map.setCenter(centerCoords, animateCenterZoom);
+      zoom !== undefined && map.setZoom(zoom)
     }
-  }, [center]);
+  }, [center, zoom, map]);
 
   useImperativeHandle(props.mapRef, () => map);
 
