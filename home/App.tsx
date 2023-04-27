@@ -1,9 +1,10 @@
+import './assets/main.css';
+
 import React from 'react';
-import GlobalStyle from './components/GlobalStyle';
 import Box from './components/Box'
-import styled from 'styled-components'
 import GitHubButton from 'react-github-btn'
 import BashSyntaxHighlighter from './components/BashSyntaxHighlighter'
+import { CustomMap } from './components/CustomMap'
 // import Home from "./Home";
 // import DynamicRoute from "./DynamicRoute";
 // import Polygons from "./Polygons";
@@ -17,41 +18,41 @@ declare global {
   }
 }
 
+//
+// const Title = styled.div`
+//   font-size: 40px;
+//   font-weight: 700;
+//   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+// `
+//
+// const Header = styled.div`
+//   padding: 40px;
+//   text-align: center;
+// `
 
-const Title = styled.div`
-  font-size: 40px;
-  font-weight: 700;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
-`
-
-const Header = styled.div`
-  padding: 40px;
-  text-align: center;
-`
-
-const Content = styled.div`
-  display: flex;
-  flex-flow: column;
-  row-gap: 40px;
-`
+// const Content = styled.div`
+//   display: flex;
+//   flex-flow: column;
+//   row-gap: 40px;
+// `
 
 const App = () => {
   return (
     <>
-      <GlobalStyle />
-      <Header>
-        <Title>react-mapycz</Title>
-        <p>Easy-to-use integration of Mapy.cz into React using Mapy.cz API.</p>
+      <div className="p-10 text-center">
+        <div className="font-bold text-2xl">react-mapycz</div>
+        <p className="p-1">Easy to use integration of Mapy.cz into React using Mapy.cz API.</p>
         <GitHubButton href="https://github.com/flsy/react-mapycz" data-icon="octicon-star" data-size="large" data-show-count={true} aria-label="Star flsy/react-mapycz on GitHub">Star</GitHubButton>
-      </Header>
-      <Content>
+      </div>
+      <div className="flex flex-col gap-y-5 px-5 lg:px-10 xl:px-20 items-center">
         <Box
           title="Installation"
           buttonLabel="Getting started"
-          content={<>
-            <div>Install library and peer dependencies</div>
+          description={<>
+            <div className="py-2">Install library and peer dependencies. Both React and React-DOM versions are restricted to <span className="font-semibold">{'>'}=16.13.1</span> so feel free to choose any version that fits this range and your needs.</div>
+            <p className="py-1">NPM:</p>
             <BashSyntaxHighlighter>npm i react-mapycz react-dom@16.13.1 react@16.13.1</BashSyntaxHighlighter>
-            <p>or</p>
+            <p className="py-1">Yarn:</p>
             <BashSyntaxHighlighter>yarn add react-mapycz react-dom@16.13.1 react@16.13.1</BashSyntaxHighlighter>
           </>}
         />
@@ -59,7 +60,8 @@ const App = () => {
         <Box
           title="Getting started"
           buttonLabel="Controls"
-          content={<>
+          map={<CustomMap />}
+          description={<>
             <p>Map is a main element of react-mapycz library.</p>
             <p>Available properties:</p>
             <ul>
@@ -73,7 +75,7 @@ const App = () => {
             </ul>
           </>}
         />
-      </Content>
+      </div>
       {/*<Home />*/}
       {/*<MapElement />*/}
       {/*<Element />*/}

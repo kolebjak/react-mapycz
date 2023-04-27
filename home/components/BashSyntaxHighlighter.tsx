@@ -8,7 +8,7 @@ interface Props {
 
 const BashSyntaxHighlighter = ({ children }: Props) => {
   return  (
-    <SyntaxHighlighter customStyle={{ border: '1px solid #D2D2D2', borderRadius: '2px' }} language="bash" style={githubGist}>
+    <SyntaxHighlighter  customStyle={{ border: '1px solid #D2D2D2', borderRadius: '2px', fontSize: '13px' }} language="bash" style={githubGist}>
       {children}
     </SyntaxHighlighter>
   )
