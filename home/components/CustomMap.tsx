@@ -7,6 +7,6 @@ type Props = {
 }
 
 export const CustomMap = ({ children }: Props) => {
-  return <Map className="rounded-xl" loadingElement={<div className="rounded-xl w-full h-[300px] bg-[#efefef] flex justify-center items-center"><FiLoader /></div>}>{children}</Map>
+  return <Map className="rounded-md" loadingElement={<div className="rounded-md w-full h-[300px] bg-[#efefef] flex justify-center items-center"><FiLoader /></div>}>{children}</Map>
 }
 
