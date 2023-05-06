@@ -37,17 +37,28 @@ const handleEventListener = (e: MapEvent, sMap: unknown, onEvent: MapEventListen
   onEvent(e, coordinates)
 }
 
+
 const Map = (props: MapProps) => {
   const mapNode = useRef(null);
   const [map, setMap] = useState<any>(null);
   const {width, height, children, onEvent, eventNameListener = "*", zoom, center, animateCenterZoom} = props;
 
+  const customLayer = new window.SMap.Layer.WMS(null, "https://services.cuzk.cz/wms/local-km-wms.asp", {layers:"KN,bp,bp_ppbp"});
+
+
   useEffect(() => {
     if (!map && mapNode) {
       const centerCoords = center ? window.SMap.Coords.fromWGS84(center.lng, center.lat) : undefined;
       const sMap = new window.SMap(mapNode.current, centerCoords, zoom);
-      const l = sMap.addDefaultLayer(props.baseLayer ?? BaseLayers.TURIST_NEW);
+      // const l = sMap.addDefaultLayer(props.baseLayer ?? BaseLayers.TURIST_NEW);
+
+      console.log('-- layer --', customLayer)
+      const l = sMap.addLayer(customLayer);
       l.enable();
+
+      console.log('-called-')
+
+      //
 
       setMap(sMap);
       if (onEvent) {

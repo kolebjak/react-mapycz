@@ -6,6 +6,7 @@ import Polygons from "./Polygons";
 import Element from "./Element";
 import RouteInfo from './RouteInfo'
 import MapElement from './MapElement'
+import Clustering from './Clustering'
 
 declare global {
   interface Window {
@@ -23,6 +24,7 @@ const App = () => {
       <DynamicRoute />
       <Polygons />
       <RouteInfo />
+      <Clustering />
     </>
   )
 }
