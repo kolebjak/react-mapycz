@@ -52,9 +52,9 @@ const Map = (props: MapProps) => {
       setMap(sMap);
       if (onEvent) {
         const signals = sMap.getSignals();
-        const eventListener = signals.addListener(window, eventNameListener, (e: MapEvent) => handleEventListener(e, sMap, onEvent));
+        const eventListenerId = signals.addListener(window, eventNameListener, (e: MapEvent) => handleEventListener(e, sMap, onEvent));
         return () => {
-          signals.removeListener(window, eventNameListener, eventListener)
+          signals.removeListener(eventListenerId)
         }
       }
     }
