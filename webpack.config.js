@@ -21,6 +21,14 @@ module.exports = {
                     }
                 }],
                 exclude: /node_modules/,
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'postcss-loader'
+                ]
             }
         ]
     },
@@ -41,6 +49,7 @@ module.exports = {
         port: 9000,
         hot: true,
         client: {
+            progress: true,
             overlay: { errors: true, warnings: false },
         },
     }

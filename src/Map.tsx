@@ -21,6 +21,7 @@ export interface MapProps {
   eventNameListener?: string;
   animateCenterZoom?: boolean;
   mapRef?: React.RefObject<SMap>;
+  className?: string;
 }
 
 // Override PreflightCSS presets
@@ -73,7 +74,7 @@ const Map = (props: MapProps) => {
 
   return (
       <MapContext.Provider value={map}>
-        <StyledMap style={{width, height}} ref={mapNode}>
+        <StyledMap style={{width, height}} className={props.className} ref={mapNode}>
           {map && children}
         </StyledMap>
       </MapContext.Provider>
