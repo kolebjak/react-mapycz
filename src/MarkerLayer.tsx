@@ -19,7 +19,7 @@ const MarkerLayer = ({children, enableClustering, clusterConfig, id}: MarkerLaye
         const clusterer = new window.SMap.Marker.Clusterer(
             map,
             clusterConfig?.maxDistance,
-            clusterConfig?.clusterCtor
+            window.SMap.Marker.Cluster(id, { color: "#ff0000"})
         );
         markerLayer.setClusterer(clusterer);
     }
