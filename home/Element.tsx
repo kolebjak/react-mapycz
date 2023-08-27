@@ -1,7 +1,14 @@
 import React from 'react';
 import styled from "styled-components";
-import {CompassControl, KeyboardControl, MouseControl, SyncControl, ZoomControl} from "../src/controls";
-import {Map, Marker, MarkerLayer} from "../src";
+import {
+  CompassControl,
+  KeyboardControl,
+  LayoutControl,
+  MouseControl,
+  SyncControl,
+  ZoomControl,
+} from '../src/controls'
+import { BaseLayers, Map, Marker, MarkerLayer } from '../src'
 import {githubGist} from "react-syntax-highlighter/dist/esm/styles/hljs";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import Section from "./components/Section";
@@ -21,6 +28,7 @@ const Element = () => {
       <MouseControl zoom={true} pan={true} wheel={true}/>
       <CompassControl right={10} top={50}/>
       <SyncControl />
+      <LayoutControl layers={[BaseLayers.HISTORIC, BaseLayers.SMART_BASE, BaseLayers.GEOGRAPHY]} top={10} left={10} />
       <MarkerLayer>
         <Marker coords={{lat: 50.0755, lng: 14.4378}} card={markerCard}/>
       </MarkerLayer>
@@ -46,6 +54,7 @@ const Element = () => {
           <MouseControl zoom={true} pan={true} wheel={true}/>
           <CompassControl right={10} top={50}/>
           <SyncControl />
+          <LayoutControl layers={[BaseLayers.HISTORIC, BaseLayers.SMART_BASE, BaseLayers.GEOGRAPHY]} top={10} left={10} />
           <MarkerLayer>
             <Marker coords={{lat: 50.0755, lng: 14.4378}} card={markerCard} />
           </MarkerLayer>

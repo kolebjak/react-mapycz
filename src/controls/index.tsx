@@ -3,6 +3,7 @@ export {default as CompassControl} from './CompassControl';
 export {default as MouseControl} from './MouseControl';
 export {default as KeyboardControl} from './KeyboardControl';
 export {default as SyncControl} from './SyncControl';
+export {default as LayoutControl} from './LayoutControl';
 
 export type {ZoomControlProps} from './ZoomControl';
 export type {CompassControlProps} from './CompassControl';

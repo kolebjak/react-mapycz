@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from "styled-components";
-import {Map} from "../src";
-import {githubGist} from "react-syntax-highlighter/dist/esm/styles/hljs";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import Section from "./components/Section";
-import ScrollDown from "./components/ScrollDown";
+import React from 'react'
+import styled from 'styled-components'
+import { Map } from '../src'
+import { githubGist } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import SyntaxHighlighter from 'react-syntax-highlighter'
+import Section from './components/Section'
+import ScrollDown from './components/ScrollDown'
 
 const SMapElement = styled(Section)`
   display: flex;
@@ -29,7 +29,7 @@ const MapElement = () => {
           <li>zoom: <i>optional</i> Default map zoom, defaults to 13</li>
           <li>minZoom: <i>optional</i> Minimal map zoom, defaults to 1</li>
           <li>maxZoom: <i>optional</i> Max map zoom, defaults to 21</li>
-          <li>baseLayers: <i>optional</i> Map layers, array of values from <a target="_blank" href="https://github.com/flsy/react-mapycz/blob/master/src/BaseLayers.tsx">BaseLayers</a></li>
+          <li>baseLayer: <i>optional</i> Map layer, value from <a target="_blank" href="https://github.com/flsy/react-mapycz/blob/master/src/BaseLayers.tsx">BaseLayers</a> enum</li>
         </ul>
       </div>
       <div style={{width: '40%'}}>
