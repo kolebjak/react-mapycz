@@ -11,7 +11,7 @@ Mapy.cz in React
 
 # Demo
 
-https://softopus-io.github.io/react-mapycz/
+https://kolebjak.github.io/react-mapycz/
 
 # Run preview
 - Install: `yarn`
