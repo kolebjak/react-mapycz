@@ -383,9 +383,9 @@
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^18.0.21":
-  version "18.0.21"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.21.tgz#b8209e9626bb00a34c76f55482697edd2b43cc67"
-  integrity sha512-7QUCOxvFgnD5Jk8ZKlUAhVcRj7GuJRjnjjiY/IUBWKgOlnvDvTMLD4RTF7NPyVmbRhNrbomZiOepg7M/2Kj1mA==
+  version "18.2.32"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.32.tgz#7ec787730c45ee9a3c0ed150b19e95c31fe4608a"
+  integrity sha512-F0FVIZQ1x5Gxy/VYJb7XcWvCcHR28Sjwt1dXLspdIatfPq1MVACfnBDwKe6ANLxQ64riIJooXClpUR6oxTiepg==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
